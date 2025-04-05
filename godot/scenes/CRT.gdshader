@@ -3,9 +3,9 @@ shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 // Scanline properties
-uniform float line_density : hint_range(10.0, 300.0) = 100.0;
-uniform float line_sharpness : hint_range(0.0, 10.0) = 2.0; // Reduced from 3.0
-uniform float line_strength : hint_range(0.0, 1.0) = 0.3; // Reduced from 0.5
+uniform float line_density : hint_range(10.0, 300.0) = 200.0;
+uniform float line_sharpness : hint_range(0.0, 10.0) = 5.0; // Reduced from 3.0
+uniform float line_strength : hint_range(0.0, 1.0) = 0.5; // Reduced from 0.5
 
 // CRT warping properties
 uniform float curvature_x : hint_range(0.0, 0.2) = 0.03; // Reduced from 0.05

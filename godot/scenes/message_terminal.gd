@@ -1,14 +1,17 @@
 extends Control
-@export var character_delay := 0.1  # Increased from 0.05 to 0.1 for slower typing
-@export var pause_after_sender := 0.8  # Pause between sender and message
-@export var auto_close_delay := 20.0
-@export var max_history_lines := 100
+@export var character_delay := 0.08  # Increased from 0.05 to 0.1 for slower typing
+@export var pause_after_timestamp := 0.2  # Pause after timestamp
+@export var pause_after_sender := 0.2  # Pause between sender and message
+@export var auto_close_delay := 2.0
+@export var max_history_lines := 1000
 
 var _full_text: String = ""
 var _typing_index: int = 0
 var _message_history: Array = []
 var _current_message: String = ""
+var _paused_at_timestamp: bool = false
 var _paused_at_sender: bool = false
+var _timestamp_pause_position: int = 0
 var _sender_pause_position: int = 0
 var _is_typing: bool = false
 
@@ -21,15 +24,23 @@ func _ready():
 	_char_reveal_timer.wait_time = character_delay
 	_char_reveal_timer.one_shot = false
 	
+	# Disable all scrolling
 	_rich_text_label.scroll_active = true
 	_rich_text_label.scroll_following = true
+	
+	# Get the VScrollBar and hide it
+	var v_scroll = _rich_text_label.get_v_scroll_bar()
+	if v_scroll:
+		v_scroll.visible = false
 
 func show_message(sender: String, message: String):
-	# Format the message with a newline between sender and message
-	var formatted_message = "[" + Time.get_time_string_from_system() + "] FROM: " + sender + "\n" + "MESSAGE: " + message
+	# Format the message with newlines between timestamp, sender, and message
+	var formatted_message = "[" + Time.get_time_string_from_system() + "] \nSOURCE:   " + sender + "\nMESSAGE:  " + message
 	
-	# Store the position where we need to pause (after "FROM: sender")
-	_sender_pause_position = formatted_message.find("\n")
+	# Store the positions where we need to pause
+	_timestamp_pause_position = formatted_message.find("\n")
+	_sender_pause_position = formatted_message.find("\n", _timestamp_pause_position + 1)
+	_paused_at_timestamp = false
 	_paused_at_sender = false
 	
 	# Add to history
@@ -58,7 +69,7 @@ func _update_display_text():
 	# Add each message with a separator
 	for i in range(_message_history.size()):
 		if i > 0:
-			display_text += "\n\n"  # Double newline between messages
+			display_text += "\n \n"  # Space between newlines
 		display_text += _message_history[i]
 	
 	_full_text = display_text
@@ -67,11 +78,18 @@ func _update_display_text():
 func _on_char_reveal_timeout():
 	# Reveal next character
 	if _typing_index < _full_text.length():
-		# Check if we need to pause after the sender
+		# Calculate relative position within current message
 		var relative_position = _typing_index - (_full_text.length() - _current_message.length())
 		
+		# Check if we need to pause after the timestamp
+		if relative_position == _timestamp_pause_position and not _paused_at_timestamp:
+			_paused_at_timestamp = true
+			_char_reveal_timer.wait_time = pause_after_timestamp
+			_char_reveal_timer.start()
+			return
+		
+		# Check if we need to pause after the sender
 		if relative_position == _sender_pause_position and not _paused_at_sender:
-			# We've reached the end of the sender line, pause
 			_paused_at_sender = true
 			_char_reveal_timer.wait_time = pause_after_sender
 			_char_reveal_timer.start()

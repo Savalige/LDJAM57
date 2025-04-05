@@ -14,3 +14,4 @@ script = ExtResource("1_tbm7i")
 
 [node name="MessageTerminal" parent="." instance=ExtResource("2_ylbch")]
 layout_mode = 1
+character_delay = 0.001
