@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5mhxx4uk7xa"]
+
+[ext_resource type="Script" path="res://scenes/testing.gd" id="1_tbm7i"]
+[ext_resource type="PackedScene" uid="uid://ccoj8cm8b8cp5" path="res://scenes/message_terminal.tscn" id="2_ylbch"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tbm7i")
+
+[node name="MessageTerminal" parent="." instance=ExtResource("2_ylbch")]
+layout_mode = 1
