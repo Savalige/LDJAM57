@@ -31,6 +31,7 @@ gui = ExtResource("6_wb0ro")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_wsitc")
+volume_db = -10.0
 autoplay = true
 
 [node name="Bonks" type="Node" parent="."]
@@ -52,7 +53,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1243, 0)
 stream = ExtResource("8_jh448")
 
 [node name="BonkTimer" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 10.0
 autostart = true
 
 [connection signal="timeout" from="BonkTimer" to="." method="_on_bonk_timer_timeout"]

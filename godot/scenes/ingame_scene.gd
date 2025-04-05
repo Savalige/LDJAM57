@@ -35,7 +35,6 @@ func _save_game() -> void:
 
 
 func _on_bonk_timer_timeout():
-	for bonk in bonks.get_children():
-		bonk.play()
+	bonks.get_children()[rng.randi() % bonks.get_child_count()].play()
 	bonk_timer.wait_time = rng.randf_range(10, 60)
 	bonk_timer.start()
