@@ -12,7 +12,16 @@ var test_messages = [
 	{"sender": "SCIENCE", "message": "Anomaly detected in sector 7-G. Investigating."},
 	{"sender": "SECURITY", "message": "Attention all personnel. Security protocols have been elevated to level 3. All non-essential movement between sectors is restricted. Authorization codes will be required for all terminal access beyond basic functions."},
 	{"sender": "MEDICAL", "message": "Medical bay reports increased cases of radiation sickness in engineering staff. All personnel who worked in sector 4 during the last 72 hours must report to medical for immediate screening and potential treatment."},
-	{"sender": "ENGINEERING", "message": "Warning: Primary reactor coolant systems showing fluctuations in pressure valves 7 through 12. Backup systems engaged. Engineering team alpha dispatched to investigate. Recommend power conservation measures until resolved."}
+	{"sender": "ENGINEERING", "message": "Warning: Primary reactor coolant systems showing fluctuations in pressure valves 7 through 12. Backup systems engaged. Engineering team alpha dispatched to investigate. Recommend power conservation measures until resolved."},
+	{"sender": "SYSTEM", "message": "Terminal boot sequence initiated..."},
+	{"sender": "ADMIN", "message": "Welcome to the secure messaging system."},
+	{"sender": "CAPTAIN", "message": "This is a longer test message to see how the terminal handles multi-line content. Please ensure all systems are operational and standing by for further instructions from central command."},
+	{"sender": "COMMUNICATIONS", "message": "Incoming transmission from headquarters: All personnel should prepare for inspection at 0800 hours tomorrow. Documentation and system logs should be updated and ready for review. Department heads will be held responsible for any discrepancies."},
+	{"sender": "COMMANDER", "message": "All stations report status immediately."},
+	{"sender": "ENGINEERING", "message": "Reactor core stable at 94% capacity."},
+	{"sender": "SCIENCE", "message": "Anomaly detected in sector 7-G. Investigating."},
+	{"sender": "SECURITY", "message": "Attention all personnel. Security protocols have been elevated to level 3. All non-essential movement between sectors is restricted. Authorization codes will be required for all terminal access beyond basic functions."},
+	{"sender": "MEDICAL", "message": "Medical bay reports increased cases of radiation sickness in engineering staff. All personnel who worked in sector 4 during the last 72 hours must report to medical for immediate screening and potential treatment."}
 ]
 # Index to track which message we're on
 var current_message_index = 0
@@ -64,7 +73,7 @@ func display_next_test_message():
 # Calculate how long it will take to display a message
 func calculate_message_duration(message: String) -> float:
 	# Format the message the same way the terminal does
-	var formatted_message = "[" + Time.get_time_string_from_system() + "] \nSOURCE:   " + test_messages[current_message_index].sender + "\nMESSAGE:  " + message
+	var formatted_message = "[" + Time.get_time_string_from_system() + "] 0xCAFE \nSRC:   " + test_messages[current_message_index].sender + "\nMSG:  " + message
 	
 	# Get the actual character delay and pause duration from the terminal
 	var char_delay = terminal.character_delay

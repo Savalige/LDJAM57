@@ -1,7 +1,8 @@
 extends Control
-@export var character_delay := 0.08  # Increased from 0.05 to 0.1 for slower typing
+
+@export var character_delay := 0.08   # Increased from 0.05 to 0.1 for slower typing
 @export var pause_after_timestamp := 0.2  # Pause after timestamp
-@export var pause_after_sender := 0.2  # Pause between sender and message
+@export var pause_after_sender := 0.2     # Pause between sender and message
 @export var auto_close_delay := 2.0
 @export var max_history_lines := 1000
 
@@ -15,6 +16,9 @@ var _timestamp_pause_position: int = 0
 var _sender_pause_position: int = 0
 var _is_typing: bool = false
 
+# Hexadecimal message ID starting point
+var message_hex_id := 0xDE97
+
 @onready var _rich_text_label := $RichTextLabel
 @onready var _char_reveal_timer := $CharRevealTimer
 @onready var _audio_player := $AudioStreamPlayer3D
@@ -24,18 +28,21 @@ func _ready():
 	_char_reveal_timer.wait_time = character_delay
 	_char_reveal_timer.one_shot = false
 	
-	# Disable all scrolling
+	# Keep scroll logic, but hide the scrollbar
 	_rich_text_label.scroll_active = true
 	_rich_text_label.scroll_following = true
 	
-	# Get the VScrollBar and hide it
 	var v_scroll = _rich_text_label.get_v_scroll_bar()
 	if v_scroll:
 		v_scroll.visible = false
 
 func show_message(sender: String, message: String):
-	# Format the message with newlines between timestamp, sender, and message
-	var formatted_message = "[" + Time.get_time_string_from_system() + "] \nSOURCE:   " + sender + "\nMESSAGE:  " + message
+	# Increment and convert our hex counter to a string (e.g., 0xCAFE -> "CAFF").
+	message_hex_id += 1
+	var hex_str = "%X" % message_hex_id  # Produces an uppercase hex string, e.g. "CAFF"
+
+	# Format the message to include the hex ID
+	var formatted_message = "[" + Time.get_time_string_from_system() + "] 0x" + hex_str + "\nSRC:  " + sender + "\nMSG:  " + message
 	
 	# Store the positions where we need to pause
 	_timestamp_pause_position = formatted_message.find("\n")
@@ -51,51 +58,48 @@ func show_message(sender: String, message: String):
 	if _message_history.size() > max_history_lines:
 		_message_history.pop_front()
 	
-	# Update full text with all history
+	# Update RichTextLabel with all stored messages
 	_update_display_text()
 	
-	# Reset typing index for text reveal
+	# Reset typing index so we reveal only the *new* portion
 	_typing_index = _rich_text_label.text.length() - formatted_message.length()
 	_rich_text_label.visible_characters = _typing_index
 	
-	# Start revealing characters
+	# Start the typing animation
 	_is_typing = true
 	_char_reveal_timer.wait_time = character_delay
 	_char_reveal_timer.start()
 
 func _update_display_text():
 	var display_text = ""
-	
-	# Add each message with a separator
 	for i in range(_message_history.size()):
 		if i > 0:
-			display_text += "\n \n"  # Space between newlines
+			display_text += "\n \n"  # extra spacing between messages
 		display_text += _message_history[i]
 	
 	_full_text = display_text
 	_rich_text_label.text = _full_text
 
 func _on_char_reveal_timeout():
-	# Reveal next character
 	if _typing_index < _full_text.length():
-		# Calculate relative position within current message
+		# Where are we in the new message?
 		var relative_position = _typing_index - (_full_text.length() - _current_message.length())
 		
-		# Check if we need to pause after the timestamp
+		# Pause after timestamp?
 		if relative_position == _timestamp_pause_position and not _paused_at_timestamp:
 			_paused_at_timestamp = true
 			_char_reveal_timer.wait_time = pause_after_timestamp
 			_char_reveal_timer.start()
 			return
 		
-		# Check if we need to pause after the sender
+		# Pause after sender line?
 		if relative_position == _sender_pause_position and not _paused_at_sender:
 			_paused_at_sender = true
 			_char_reveal_timer.wait_time = pause_after_sender
 			_char_reveal_timer.start()
 			return
 		
-		# Continue normal typing
+		# Type the next character
 		_typing_index += 1
 		_rich_text_label.visible_characters = _typing_index
 		
@@ -103,18 +107,15 @@ func _on_char_reveal_timeout():
 		if _char_reveal_timer.wait_time != character_delay:
 			_char_reveal_timer.wait_time = character_delay
 		
-		# Play typing sound
+		# Optional typing sound
 		if _audio_player and _audio_player.stream:
 			_audio_player.play()
 	else:
-		# We've finished typing this message
+		# Done typing this message
 		_is_typing = false
 		_char_reveal_timer.stop()
 
-# Override _process to ensure we maintain control of visible characters
-func _process(delta):
-	# This prevents any external code from changing our visible characters
-	# during the typing animation
+func _process(_delta):
 	if _is_typing:
 		_rich_text_label.visible_characters = _typing_index
 

@@ -17,3 +17,8 @@ script = ExtResource("1_tbm7i")
 
 [node name="MessageTerminal" parent="." instance=ExtResource("2_ylbch")]
 layout_mode = 1
+character_delay = 0.08
+pause_after_timestamp = 0.2
+pause_after_sender = 0.2
+auto_close_delay = 2.0
+max_history_lines = 1000
