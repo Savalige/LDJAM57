@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="LDJAM 57"
-run/main_scene="res://scenes/boot/godot/godot_bootsplash_scene.tscn"
+run/main_scene="res://scenes/RTS/RTS.tscn"
 config/features=PackedStringArray("4.2")
+boot_splash/bg_color=Color(0.0588235, 0.054902, 0.0901961, 1)
 config/icon="res://icon.svg"
 
 [audio]
@@ -22,6 +23,7 @@ driver/output_latency=90
 [autoload]
 
 UserSettings="*res://settings/user_settings.gd"
+ScrGlobalRts="*res://scenes/RTS/scr_global_rts.gd"
 
 [display]
 
@@ -95,9 +97,12 @@ pause={
 
 locale/translations=PackedStringArray("res://i18n/translation.en.translation")
 
+[layer_names]
+
+2d_physics/layer_1="Drones"
+
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+environment/defaults/default_clear_color=Color(0.0588235, 0.054902, 0.0901961, 1)
