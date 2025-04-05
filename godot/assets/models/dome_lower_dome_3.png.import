@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duhtfg7cl5hnr"
-path.s3tc="res://.godot/imported/dome_lower_dome.png-60afd537933d7d0e7d75376c58f8e990.s3tc.ctex"
+uid="uid://c4ghfqt7bdaeq"
+path.s3tc="res://.godot/imported/dome_lower_dome_3.png-a79fbcf8da6b2d4ee24903b6558a5a09.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/models/dome_lower_dome.png"
-dest_files=["res://.godot/imported/dome_lower_dome.png-60afd537933d7d0e7d75376c58f8e990.s3tc.ctex"]
+source_file="res://assets/models/dome_lower_dome_3.png"
+dest_files=["res://.godot/imported/dome_lower_dome_3.png-a79fbcf8da6b2d4ee24903b6558a5a09.s3tc.ctex"]
 
 [params]
 

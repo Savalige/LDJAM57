@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duhtfg7cl5hnr"
-path.s3tc="res://.godot/imported/dome_lower_dome.png-60afd537933d7d0e7d75376c58f8e990.s3tc.ctex"
+uid="uid://c0ndfsxpqlc6d"
+path.s3tc="res://.godot/imported/dome_upper_dome_glossy-upper_dome_roughness.png-422ad4aeda0a33873a2a7fa55d6d2cdc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "fc08d39f0605e4d6860f92d281685a72"
+"md5": "e5c825fb6bac58f8b234a5e8df5a1371"
 }
 
 [deps]
 
-source_file="res://assets/models/dome_lower_dome.png"
-dest_files=["res://.godot/imported/dome_lower_dome.png-60afd537933d7d0e7d75376c58f8e990.s3tc.ctex"]
+source_file="res://assets/models/dome_upper_dome_glossy-upper_dome_roughness.png"
+dest_files=["res://.godot/imported/dome_upper_dome_glossy-upper_dome_roughness.png-422ad4aeda0a33873a2a7fa55d6d2cdc.s3tc.ctex"]
 
 [params]
 
