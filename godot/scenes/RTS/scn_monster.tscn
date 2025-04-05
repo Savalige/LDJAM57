@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://df26hhq2iu1iu"]
+
+[ext_resource type="Script" path="res://scenes/RTS/scn_monster.gd" id="1_hvlcb"]
+
+[node name="ScnMonster" type="Node2D"]
+script = ExtResource("1_hvlcb")
+
+[node name="Label" type="Label" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+offset_left = -50.0
+offset_top = -66.0
+offset_right = 50.0
+offset_bottom = 34.0
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Target" type="Polygon2D" parent="."]
+visible = false
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-4, 0, 0, 4, 4, 0, 0, -4)
+
+[node name="Pos" type="Polygon2D" parent="."]
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(0, 4, 15, 0, 0, -4, -4, 0)
