@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bq0i7enanr3h1"
+path="res://.godot/imported/Claustrophobic loop 1.ogg-50b7807b8fb0bffe01643fa656cc89e2.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/music/Claustrophobic loop 1.ogg"
+dest_files=["res://.godot/imported/Claustrophobic loop 1.ogg-50b7807b8fb0bffe01643fa656cc89e2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

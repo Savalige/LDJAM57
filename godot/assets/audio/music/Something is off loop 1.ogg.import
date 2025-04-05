@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://7pfllsqbmn5h"
+path="res://.godot/imported/Something is off loop 1.ogg-64e2d1ca395a64a0ddae78eb6b0ac4c1.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/music/Something is off loop 1.ogg"
+dest_files=["res://.godot/imported/Something is off loop 1.ogg-64e2d1ca395a64a0ddae78eb6b0ac4c1.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
