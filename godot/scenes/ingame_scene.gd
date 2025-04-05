@@ -5,6 +5,10 @@ extends Node2D
 @onready var player = $Player
 @onready var terminals = $Terminals
 @onready var items = $Items
+@onready var bonk_timer = $BonkTimer
+@onready var bonks = $Bonks
+
+var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	fade_overlay.visible = true
@@ -28,3 +32,10 @@ func _input(event) -> void:
 		
 func _save_game() -> void:
 	SaveGame.save_game(get_tree())
+
+
+func _on_bonk_timer_timeout():
+	for bonk in bonks.get_children():
+		bonk.play()
+	bonk_timer.wait_time = rng.randf_range(10, 60)
+	bonk_timer.start()

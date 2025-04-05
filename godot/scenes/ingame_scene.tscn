@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=9 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://diquwv3uklemf" path="res://scenes/player/player.tscn" id="3_kyerf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cwma7hmhthf30" path="res://scenes/gui/drone_gui.tscn" id="6_wb0ro"]
 [ext_resource type="AudioStream" uid="uid://gngpf7jliind" path="res://assets/audio/sfx/SFX_UNDERWATER_AMBIENCE_LOOP_1.ogg" id="6_wsitc"]
 [ext_resource type="PackedScene" uid="uid://vt3basomaw3c" path="res://assets/models/dome.glb" id="7_iej76"]
+[ext_resource type="AudioStream" uid="uid://crfvexitde8yi" path="res://assets/audio/sfx/Footsteps/Metal/sfx_footstep_metal_hard.wav" id="8_jh448"]
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
@@ -31,3 +32,27 @@ gui = ExtResource("6_wb0ro")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_wsitc")
 autoplay = true
+
+[node name="Bonks" type="Node" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Bonks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.94678, -2.85518)
+stream = ExtResource("8_jh448")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Bonks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88025, 2.76235, 0)
+stream = ExtResource("8_jh448")
+
+[node name="AudioStreamPlayer3D3" type="AudioStreamPlayer3D" parent="Bonks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0986, 2.69029, 0)
+stream = ExtResource("8_jh448")
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Bonks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1243, 0)
+stream = ExtResource("8_jh448")
+
+[node name="BonkTimer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[connection signal="timeout" from="BonkTimer" to="." method="_on_bonk_timer_timeout"]
