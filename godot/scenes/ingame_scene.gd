@@ -34,6 +34,9 @@ func _save_game() -> void:
 	SaveGame.save_game(get_tree())
 
 
+func _physics_process(delta):
+	ScrGlobalRts.physics_step(delta)
+
 func _on_bonk_timer_timeout():
 	bonks.get_children()[rng.randi() % bonks.get_child_count()].play()
 	bonk_timer.wait_time = rng.randf_range(10, 60)

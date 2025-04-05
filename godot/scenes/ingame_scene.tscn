@@ -24,10 +24,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65371, 0)
 [node name="Terminals" type="Node" parent="."]
 
 [node name="Terminal" parent="Terminals" instance=ExtResource("4_80sin")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0634632, 1.41921, -1.33165)
 gui = ExtResource("5_8cjjv")
 
 [node name="Terminal2" parent="Terminals" instance=ExtResource("4_80sin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64697, 1.43563, -1.63955)
 gui = ExtResource("6_wb0ro")
+
+[node name="Terminal3" parent="Terminals" instance=ExtResource("4_80sin")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.63929, 1.54934, -1.23182)
+gui = ExtResource("6_wb0ro")
+drone = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_wsitc")

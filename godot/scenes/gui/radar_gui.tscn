@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvih2u8dglq46"]
 
-[ext_resource type="Texture2D" uid="uid://dmelj2qgr8w7k" path="res://icon.svg" id="1_tu8tv"]
+[ext_resource type="Script" path="res://scenes/gui/radar_gui.gd" id="1_mtj5x"]
 [ext_resource type="FontFile" uid="uid://dwqqpio6ubqww" path="res://fonts/fnt_i_pixel_u.ttf" id="2_6vyr4"]
 
 [node name="RadarGui" type="Control"]
@@ -10,12 +10,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mtj5x")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 500.0
 offset_bottom = 500.0
-texture = ExtResource("1_tu8tv")
 
 [node name="Drop" type="Button" parent="."]
 layout_mode = 1

@@ -1,13 +1,16 @@
 extends Control
+class_name DroneGui
 
 var player: Player
 
 @onready var text: LineEdit = $LineEdit
 @onready var info: Label = $Info
+@onready var drone_label: Label = $Drone
+@export var drone: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	drone_label.text = "Drone: " + str(drone)
 
 func _draw():
 	draw_rect(Rect2(1.0, 1.0, 3.0, 3.0), Color.GREEN)
@@ -54,11 +57,13 @@ func parse(value: String):
 
 
 func _on_pick_up_button_up():
-	pass # Replace with function body.
+	if not ScrGlobalRts.drone_attempt_pickup(drone):
+		info.text = "ERROR: no item"
 
 
 func _on_drop_button_up():
-	pass # Replace with function body.
+	if ScrGlobalRts.drone_attempt_drop(drone):
+		info.text = "Dropped item"
 
 
 func _on_line_edit_focus_entered():
@@ -71,8 +76,12 @@ func _on_line_edit_focus_exited():
 
 func _on_line_edit_text_submitted(_new_text):
 	text.release_focus()
-	print(parse(text.text))
-	if !parse(text.text):
+	var value = parse(text.text)
+	print(value)
+	if !value:
 		info.text = "ERROR: not a valid position"
+	else:
+		info.text = "Moving to " + text.text.to_upper()
+		ScrGlobalRts.drones[drone].set_target(value)
 	text.text = ""
 	get_parent().get_parent().player.paused = false

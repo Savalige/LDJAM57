@@ -4,6 +4,7 @@ extends Node3D
 @onready var viewport = $Viewport
 @onready var area: Area3D = $Area
 @export var gui: PackedScene
+@export var drone: int
 
 var ray: RayCast3D
 var player: Player
@@ -19,7 +20,10 @@ var last_mouse_pos_2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Viewport.add_child(gui.instantiate())
+	var temp = gui.instantiate()
+	if temp is DroneGui:
+		temp.drone = drone
+	$Viewport.add_child(temp)
 	area.mouse_entered.connect(func(): mouse_entered = true)
 	viewport.set_process_input(true)
 
