@@ -5,6 +5,8 @@ const SPEED = 100.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.004
 
+@onready var psx = $Camera3D/UI/PSX
+
 var paused = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -30,6 +32,7 @@ var step_id = -1
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	psx.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
