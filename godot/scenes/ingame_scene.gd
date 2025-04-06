@@ -41,11 +41,12 @@ func _input(event) -> void:
 		get_tree().paused = true
 		pause_overlay.grab_button_focus()
 		pause_overlay.visible = true
-	if event.is_action_released("interact") and delivery_hydrophone.visible == false:
-		if player.ray != null:
-			if player.ray.is_colliding() and player.ray.get_collider() == delivery_area:
-				player.hydrophone.visible = false
-				delivery_hydrophone.visible = true
+	if player.hydrophone.visible == true:
+		if event.is_action_released("interact") and delivery_hydrophone.visible == false:
+			if player.ray != null:
+				if player.ray.is_colliding() and player.ray.get_collider() == delivery_area:
+					player.hydrophone.visible = false
+					delivery_hydrophone.visible = true
 
 func _save_game() -> void:
 	SaveGame.save_game(get_tree())
