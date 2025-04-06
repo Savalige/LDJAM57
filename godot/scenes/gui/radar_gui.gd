@@ -1,8 +1,13 @@
 extends Control
 
 @onready var timer: Timer = $Timer
-var color: Color = Color.RED
-var alpha = 0
+@onready var ping: AudioStreamPlayer = $PingAudio
+
+var alpha = []
+
+func _ready():
+	for e in ScrGlobalRts.monsters:
+		alpha.append(0)
 
 func _draw():
 	for x in range(0, 10):
@@ -17,12 +22,14 @@ func _draw():
 		radius, 
 		0, PI*2, 100, Color.PURPLE)
 		
-		for e in ScrGlobalRts.monsters:
-			var distance = (e.pos/2).distance_to(Vector2(250, 250))
-			if distance < radius + 0.5 and distance > radius - 0.5:
-				alpha = 1
-			color.a = alpha
-			draw_circle(e.pos/2, 10, color)
+		for i in range(len(ScrGlobalRts.monsters)):
+			var distance = (ScrGlobalRts.monsters[i].pos/2).distance_to(Vector2(250, 250))
+			if distance < radius + 1 and distance > radius - 1:
+				alpha[i] = 1
+				ping.play()
+			var color: Color = Color.RED
+			color.a = alpha[i]
+			draw_circle(ScrGlobalRts.monsters[i].pos/2, 10, color)
 	
 	for d in ScrGlobalRts.drones:
 		draw_circle(d.pos/2, 10, Color.BLUE)
@@ -32,10 +39,11 @@ func _draw():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if alpha > 0:
-		alpha -= 1 * delta
-	else:
-		alpha = 0
+	for i in range(len(alpha)):
+		if alpha[i] > 0:
+			alpha[i] -= 1 * delta
+		else:
+			alpha[i] = 0
 	queue_redraw()
 
 
