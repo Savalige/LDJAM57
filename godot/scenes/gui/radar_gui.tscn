@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 [gd_scene load_steps=2 format=3 uid="uid://cvih2u8dglq46"]
 
 [ext_resource type="Script" path="res://scenes/gui/radar_gui.gd" id="1_mtj5x"]
+=======
+[gd_scene load_steps=4 format=3 uid="uid://cvih2u8dglq46"]
+
+[ext_resource type="Script" path="res://scenes/gui/radar_gui.gd" id="1_mtj5x"]
+[ext_resource type="FontFile" uid="uid://dwqqpio6ubqww" path="res://fonts/fnt_i_pixel_u.ttf" id="2_6vyr4"]
+[ext_resource type="AudioStream" uid="uid://4argqlthrprn" path="res://assets/audio/sfx/Footsteps/Concrete/sfx_footstep_concrete_softer_1.wav" id="3_lke4g"]
+>>>>>>> 449fbb2e42bf3ea4e9dac31f88b7d14f09d57c08
 
 [node name="RadarGui" type="Control"]
 layout_mode = 3
