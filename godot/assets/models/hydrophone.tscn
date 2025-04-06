@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4l283c886ddf"]
+
+[ext_resource type="PackedScene" uid="uid://ch3pt48se8yy7" path="res://assets/models/hydrophone.glb" id="1_t4der"]
+[ext_resource type="Script" path="res://assets/models/hydrophone.gd" id="2_5x5v4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3lsct"]
+size = Vector3(0.197327, 0.2, 0.619458)
+
+[node name="hydrophone" instance=ExtResource("1_t4der")]
+script = ExtResource("2_5x5v4")
+
+[node name="Area3D" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00112915, 0.1, -0.0532593)
+shape = SubResource("BoxShape3D_3lsct")

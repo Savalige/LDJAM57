@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3myav8ca5cgh"]
+
+[ext_resource type="Script" path="res://scenes/gui/terminal.gd" id="1_xpkg7"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gv8xn"]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ky8wl"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_gv8xn")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vnq7f"]
+size = Vector2(1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6md5v"]
+size = Vector3(1, 1, 0.0812988)
+
+[node name="Terminal" type="Node3D"]
+script = ExtResource("1_xpkg7")
+
+[node name="Display" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ky8wl")
+mesh = SubResource("PlaneMesh_vnq7f")
+
+[node name="Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0392554)
+shape = SubResource("BoxShape3D_6md5v")
+
+[node name="Viewport" type="SubViewport" parent="."]
+transparent_bg = true
+render_target_update_mode = 4
