@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhg45iwrlmt61"]
+
+[ext_resource type="PackedScene" uid="uid://vt3basomaw3c" path="res://assets/models/dome.glb" id="1_mxvhb"]
+[ext_resource type="Material" uid="uid://utfb4ivadky8" path="res://assets/models/Copper.tres" id="2_rhmno"]
+
+[node name="dome" instance=ExtResource("1_mxvhb")]
+
+[node name="Cylinder" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_rhmno")
+
+[node name="Sphere" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_rhmno")
+
+[node name="Cylinder_001" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_rhmno")
+
+[node name="Sphere_002" parent="." index="3"]
+surface_material_override/0 = ExtResource("2_rhmno")
+
+[node name="Cylinder_003" parent="." index="5"]
+surface_material_override/0 = ExtResource("2_rhmno")
