@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccueyg4c7dv4r"]
+
+[ext_resource type="PackedScene" uid="uid://brqrh8lccigxa" path="res://assets/models/cabinetv2.glb" id="1_iq4vn"]
+[ext_resource type="PackedScene" uid="uid://ctkjj7j1w7lhe" path="res://assets/modelscenes/cabinetdoor.tscn" id="2_ntcif"]
+[ext_resource type="Script" path="res://assets/modelscenes/cabinetdoor.gd" id="3_e6aol"]
+[ext_resource type="Script" path="res://assets/modelscenes/Area3D.gd" id="4_uthdw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t15eq"]
+size = Vector3(0.368469, 0.720703, 0.708984)
+
+[node name="cabinetv2" instance=ExtResource("1_iq4vn")]
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="cabinetdoor" parent="." index="1" instance=ExtResource("2_ntcif")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.261493, 0.00110265, -0.259639)
+script = ExtResource("3_e6aol")
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.341151, 0.434166, 0.198131)
+script = ExtResource("4_uthdw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.096762, 0, -0.196154)
+shape = SubResource("BoxShape3D_t15eq")

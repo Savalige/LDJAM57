@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=20 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bhg45iwrlmt61" path="res://assets/models/dome.tscn" id="2_cv5ji"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://q1jw2jbtxere" path="res://assets/models/button.tscn" id="10_v5cgc"]
 [ext_resource type="PackedScene" uid="uid://c1i3q0ns6qef1" path="res://assets/models/handle.glb" id="14_ptrm3"]
 [ext_resource type="PackedScene" uid="uid://cvnuvm37jocq0" path="res://assets/modelscenes/ceilinglamp.tscn" id="15_l0a63"]
+[ext_resource type="PackedScene" uid="uid://xw85oyp4s2s8" path="res://assets/modelscenes/cabinet.tscn" id="16_8pjoi"]
+[ext_resource type="PackedScene" uid="uid://ccueyg4c7dv4r" path="res://assets/modelscenes/cabinetv2.tscn" id="17_7uxhl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cnahk"]
 size = Vector3(0.9, 0.5, 1)
@@ -145,6 +147,12 @@ environment = SubResource("Environment_ek4vg")
 
 [node name="ceilinglamp" parent="." instance=ExtResource("15_l0a63")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62046, 0)
+
+[node name="cabinet" parent="." instance=ExtResource("16_8pjoi")]
+transform = Transform3D(0.560596, 0, 0.82809, 0, 1, 0, -0.82809, 0, 0.560596, -1.50583, 0.343992, 3.45222)
+
+[node name="cabinetv2" parent="." instance=ExtResource("17_7uxhl")]
+transform = Transform3D(0.916795, 0, 0.399357, 0, 1, 0, -0.399357, 0, 0.916795, -1.93492, 1.00011, 2.80608)
 
 [connection signal="timeout" from="CreakTimer" to="." method="_on_creak_timer_timeout"]
 [connection signal="timeout" from="BonkTimer" to="." method="_on_bonk_timer_timeout"]

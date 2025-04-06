@@ -28,3 +28,7 @@ offset_bottom = -40.0
 grow_vertical = 0
 text = "Ping
 "
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="PingAudio" type="AudioStreamPlayer" parent="."]

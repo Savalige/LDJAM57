@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://baovq6yspnuun"]
+
+[node name="HydrophoneComponent" type="HBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.0
+offset_top = 37.0
+offset_right = 125.0
+offset_bottom = 82.0
+grow_horizontal = 2
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+text = "Label"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+
+[node name="Deployment" type="Label" parent="."]
+layout_mode = 2
+text = "In Storage"

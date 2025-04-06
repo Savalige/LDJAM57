@@ -22,7 +22,7 @@ shader_parameter/dither_size = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_knhip"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_b6afx")
 
 [node name="Camera3D" type="Camera3D" parent="."]
