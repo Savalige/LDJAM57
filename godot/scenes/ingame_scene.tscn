@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=17 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bhg45iwrlmt61" path="res://assets/models/dome.tscn" id="2_cv5ji"]
@@ -17,6 +17,16 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cnahk"]
 size = Vector3(0.9, 0.5, 1)
+
+[sub_resource type="Environment" id="Environment_ek4vg"]
+ambient_light_color = Color(0.948636, 0.787042, 0.592995, 1)
+ambient_light_energy = 0.04
+glow_enabled = true
+glow_bloom = 0.04
+fog_enabled = true
+fog_light_color = Color(0.954949, 0.807419, 0.631515, 1)
+fog_light_energy = 0.02
+fog_density = 0.1
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
@@ -124,6 +134,9 @@ transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 
 
 [node name="handle" parent="." instance=ExtResource("14_ptrm3")]
 transform = Transform3D(-0.707107, 0.707107, -6.18172e-08, 0.707107, 0.707107, 6.18172e-08, 8.74228e-08, 0, -1, -0.000675321, 1.07195, 3.86675)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ek4vg")
 
 [connection signal="timeout" from="CreakTimer" to="." method="_on_creak_timer_timeout"]
 [connection signal="timeout" from="BonkTimer" to="." method="_on_bonk_timer_timeout"]
