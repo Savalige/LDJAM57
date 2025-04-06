@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwma7hmhthf30"]
+[gd_scene load_steps=7 format=3 uid="uid://cwma7hmhthf30"]
 
 [ext_resource type="Script" path="res://scenes/gui/drone_gui.gd" id="1_23hna"]
 [ext_resource type="FontFile" uid="uid://dwqqpio6ubqww" path="res://fonts/fnt_i_pixel_u.ttf" id="2_4k63x"]
+[ext_resource type="AudioStream" uid="uid://cgk336blj4bi2" path="res://assets/audio/sfx/sfx computer error v2.wav" id="3_2topi"]
+[ext_resource type="AudioStream" uid="uid://b6x77emkprjwx" path="res://assets/audio/sfx/sfx_mouse_click.mp3" id="4_0cyvh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tejxo"]
 font = ExtResource("2_4k63x")
@@ -92,9 +94,16 @@ offset_bottom = 229.0
 placeholder_text = "Cordinates"
 max_length = 2
 
+[node name="ErrorAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2topi")
+volume_db = -10.0
+
+[node name="ClickAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0cyvh")
+
 [connection signal="button_up" from="PickUp" to="." method="_on_pick_up_button_up"]
 [connection signal="button_up" from="Drop" to="." method="_on_drop_button_up"]
-[connection signal="button_up" from="Photo" to="." method="_on_drop_button_up"]
+[connection signal="button_up" from="Photo" to="." method="_on_photo_button_up"]
 [connection signal="focus_entered" from="LineEdit" to="." method="_on_line_edit_focus_entered"]
 [connection signal="focus_exited" from="LineEdit" to="." method="_on_line_edit_focus_exited"]
 [connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]
