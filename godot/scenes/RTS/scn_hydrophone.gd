@@ -4,4 +4,4 @@ extends Node2D
 
 func _physics_process(delta):
 	global_position = ScrGlobalRts.hydrophones[id].pos
-	$Sprite2D.visible = ((ScrGlobalRts.hydrophones[id].state == ScrGlobalRts.Hydrophone.State.ACTIVE) or (ScrGlobalRts.hydrophones[id].state == ScrGlobalRts.Hydrophone.State.INACTIVE))
+	$Sprite2D.visible = (ScrGlobalRts.hydrophones[id].state == ScrGlobalRts.Hydrophone.State.DEPLOYED)

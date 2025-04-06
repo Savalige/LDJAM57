@@ -2,6 +2,7 @@ extends Node
 
 class Drone:
 	enum State {IDLE, MOVING, DESTROID}
+	enum HoldType {EMPTY, HYDROPHONE}
 	
 	const speed : float = 10
 	const speed_rotation : float = PI/6
@@ -14,6 +15,7 @@ class Drone:
 	var state  : State
 	
 	var holding = null
+	var hold_type = HoldType.EMPTY
 	
 	func _init(pos : Vector2, angle : float) -> void:
 		self.pos = pos
@@ -45,13 +47,15 @@ class Drone:
 		self.state = State.MOVING
 
 class Hydrophone:
-	enum State {ACTIVE, INACTIVE, CARRIED, IN_BASE}
+	enum State {DEPLOYED, CARRIED, IN_BASE}
 	var pos   : Vector2
 	var state : State
+	var active : bool
 	
 	func _init(pos : Vector2):
 		self.pos = pos
-		self.state = State.ACTIVE
+		self.state = State.IN_BASE
+		self.active = true
 
 class Monster:
 	enum State {IDLE, ROAMING, INVESTIGATE}
@@ -162,6 +166,11 @@ var monsters : Array[Monster] = [
 	Roamer.new(Vector2(800, 800), -PI*3/4, Rect2(600, 600, 400, 400), 20, 20)
 ]
 
+enum BaseBox {EMPTY, HYDROPHONE}
+var base_box = BaseBox.EMPTY
+var base_pos = Vector2(500, 500)
+var base_radius_squared = 75*75
+
 func _ready():
 	pass
 
@@ -179,9 +188,26 @@ func physics_step(delta):
 	for m in monsters:
 		m.physics_step(delta)
 
+signal base_box_pickup()
+
 func drone_attempt_pickup(id : int) -> bool:
 	if drones[id].holding != null:
 		return false
+	
+	if drones[id].pos.distance_squared_to(base_pos) < base_radius_squared:
+		if base_box == BaseBox.HYDROPHONE:
+			base_box = BaseBox.EMPTY
+			
+			for h in hydrophones:
+				if h.state == Hydrophone.State.IN_BASE:
+					h.state = Hydrophone.State.CARRIED
+					drones[id].holding = h
+					drones[id].hold_type = Drone.HoldType.HYDROPHONE
+					
+					base_box_pickup.emit()
+					return true
+			push_error("attepted to pickup hydrophone from base, but no hydrophone in base")
+			return false
 	
 	var closest_object = null
 	var closest_distance : float = INF
@@ -204,11 +230,27 @@ func drone_attempt_pickup(id : int) -> bool:
 	
 	return false
 
+signal base_box_drop(type : BaseBox)
+
 func drone_attempt_drop(id : int) -> bool:
 	if drones[id].holding == null:
 		return false
 	
-	drones[id].holding.state = Hydrophone.State.ACTIVE
+	print_debug(drones[id].pos.distance_squared_to(base_pos))
+	if drones[id].pos.distance_squared_to(base_pos) < base_radius_squared:
+		if base_box == BaseBox.EMPTY:
+			if drones[id].hold_type == Drone.HoldType.HYDROPHONE:
+				drones[id].holding.state = Hydrophone.State.IN_BASE
+				drones[id].holding = null
+				drones[id].hold_type = Drone.HoldType.EMPTY
+				
+				base_box_drop.emit(BaseBox.HYDROPHONE)
+				base_box = BaseBox.HYDROPHONE
+				return true
+		
+		return false
+	
+	drones[id].holding.state = Hydrophone.State.DEPLOYED
 	drones[id].holding = null
 	
 	return true
