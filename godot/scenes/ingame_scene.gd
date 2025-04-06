@@ -7,6 +7,8 @@ extends Node2D
 @onready var items = $Items
 @onready var bonk_timer = $BonkTimer
 @onready var bonks = $Bonks
+@onready var delivery_area = $DeliveryArea
+@onready var delivery_hydrophone = $DeliveryArea/hydrophone
 
 var rng = RandomNumberGenerator.new()
 
@@ -16,6 +18,10 @@ func _ready() -> void:
 	for terminal in terminals.get_children():
 		terminal.ray = player.ray
 		terminal.player = player
+	
+	for item in items.get_children():
+		item.ray = player.ray
+		item.player = player
 	
 	if SaveGame.has_save():
 		SaveGame.load_game(get_tree())
@@ -29,7 +35,12 @@ func _input(event) -> void:
 		get_tree().paused = true
 		pause_overlay.grab_button_focus()
 		pause_overlay.visible = true
-		
+	if event.is_action_released("interact"):
+		if player.ray != null:
+			if player.ray.is_colliding() and player.ray.get_collider() == delivery_area:
+				player.hydrophone.visible = false
+				delivery_hydrophone.visible = true
+
 func _save_game() -> void:
 	SaveGame.save_game(get_tree())
 

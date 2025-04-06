@@ -1,13 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=12 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://diquwv3uklemf" path="res://scenes/player/player.tscn" id="3_kyerf"]
 [ext_resource type="PackedScene" uid="uid://b3myav8ca5cgh" path="res://scenes/gui/terminal.tscn" id="4_80sin"]
+[ext_resource type="PackedScene" uid="uid://c4l283c886ddf" path="res://assets/models/hydrophone.tscn" id="4_ykmf7"]
 [ext_resource type="PackedScene" uid="uid://cvih2u8dglq46" path="res://scenes/gui/radar_gui.tscn" id="5_8cjjv"]
 [ext_resource type="PackedScene" uid="uid://cwma7hmhthf30" path="res://scenes/gui/drone_gui.tscn" id="6_wb0ro"]
 [ext_resource type="AudioStream" uid="uid://gngpf7jliind" path="res://assets/audio/sfx/SFX_UNDERWATER_AMBIENCE_LOOP_1.ogg" id="6_wsitc"]
 [ext_resource type="PackedScene" uid="uid://vt3basomaw3c" path="res://assets/models/dome.glb" id="7_iej76"]
 [ext_resource type="AudioStream" uid="uid://crfvexitde8yi" path="res://assets/audio/sfx/Footsteps/Metal/sfx_footstep_metal_hard.wav" id="8_jh448"]
+[ext_resource type="PackedScene" uid="uid://ch3pt48se8yy7" path="res://assets/models/hydrophone.glb" id="10_38com"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cnahk"]
+size = Vector3(0.9, 0.5, 1)
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
@@ -20,6 +25,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65371, 0)
 [node name="Player" parent="." instance=ExtResource("3_kyerf")]
 
 [node name="Items" type="Node" parent="."]
+
+[node name="hydrophone" parent="Items" instance=ExtResource("4_ykmf7")]
 
 [node name="Terminals" type="Node" parent="."]
 
@@ -62,5 +69,16 @@ stream = ExtResource("8_jh448")
 [node name="BonkTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="DeliveryArea" type="Area3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.3, 1, 2.3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeliveryArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, -0.25, 0)
+shape = SubResource("BoxShape3D_cnahk")
+
+[node name="hydrophone" parent="DeliveryArea" instance=ExtResource("10_38com")]
+transform = Transform3D(0.9457, 0, -0.32504, 0, 1, 0, 0.32504, 0, 0.9457, 0, -0.298493, 0)
+visible = false
 
 [connection signal="timeout" from="BonkTimer" to="." method="_on_bonk_timer_timeout"]

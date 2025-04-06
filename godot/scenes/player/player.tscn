@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://diquwv3uklemf"]
+[gd_scene load_steps=6 format=3 uid="uid://diquwv3uklemf"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_b6afx"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="2_mnk7t"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_1wu6q"]
+[ext_resource type="PackedScene" uid="uid://ch3pt48se8yy7" path="res://assets/models/hydrophone.glb" id="4_1lva4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_knhip"]
 
@@ -46,3 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_knhip")
 
 [node name="Footsteps" type="AudioStreamPlayer" parent="."]
+
+[node name="hydrophone" parent="." instance=ExtResource("4_1lva4")]
+transform = Transform3D(0.422584, -0.705661, -0.56874, 0.420861, 0.708549, -0.566422, 0.802682, 0, 0.596407, 0.262672, 1.21627, -0.624295)
+visible = false
