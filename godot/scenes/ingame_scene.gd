@@ -12,6 +12,7 @@ extends Node2D
 @onready var delivery_area = $DeliveryArea
 @onready var delivery_hydrophone = $DeliveryArea/hydrophone
 @onready var button = $button
+@onready var box: Node3D = $dome/Box
 
 var rng = RandomNumberGenerator.new()
 
@@ -33,6 +34,8 @@ func _ready() -> void:
 	
 	pause_overlay.game_exited.connect(_save_game)
 	button.pressed.connect(send_item)
+	ScrGlobalRts.base_box_drop.connect(item_got)
+	ScrGlobalRts.base_box_pickup.connect(item_taken)
 
 func _input(event) -> void:
 	if event.is_action_pressed("pause") and not pause_overlay.visible:
@@ -64,9 +67,22 @@ func _on_bonk_timer_timeout():
 	bonk_timer.start()
 
 func send_item():
-	if delivery_hydrophone.visible == true:
-		delivery_hydrophone.visible = false
+	if delivery_hydrophone.visible == true and box.visible == false:
+		box.visible = true
+		ScrGlobalRts.base_box = ScrGlobalRts.BaseBox.HYDROPHONE
+	elif box.visible == true:
+		box.visible = false
+		ScrGlobalRts.base_box = ScrGlobalRts.BaseBox.EMPTY
 
+func item_taken():
+	delivery_hydrophone.visible = false
+	box.visible = false
+	ScrGlobalRts.base_box = ScrGlobalRts.BaseBox.EMPTY
+
+func item_got(type: ScrGlobalRts.BaseBox):
+	if  type == ScrGlobalRts.BaseBox.HYDROPHONE:
+		box.visible = true
+		delivery_hydrophone.visible = true
 
 func _on_creak_timer_timeout():
 	creaks.get_children()[rng.randi() % creaks.get_child_count()].play()

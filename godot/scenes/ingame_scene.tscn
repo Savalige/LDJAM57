@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=17 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bhg45iwrlmt61" path="res://assets/models/dome.tscn" id="2_cv5ji"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cvih2u8dglq46" path="res://scenes/gui/radar_gui.tscn" id="5_8cjjv"]
 [ext_resource type="PackedScene" uid="uid://cwma7hmhthf30" path="res://scenes/gui/drone_gui.tscn" id="6_wb0ro"]
 [ext_resource type="AudioStream" uid="uid://gngpf7jliind" path="res://assets/audio/sfx/SFX_UNDERWATER_AMBIENCE_LOOP_1.ogg" id="6_wsitc"]
+[ext_resource type="PackedScene" uid="uid://nqd65nhfcn1m" path="res://scenes/gui/hydrophone_gui.tscn" id="8_37bqx"]
 [ext_resource type="AudioStream" uid="uid://crfvexitde8yi" path="res://assets/audio/sfx/Footsteps/Metal/sfx_footstep_metal_hard.wav" id="8_jh448"]
 [ext_resource type="AudioStream" uid="uid://b88j1iyp41fkj" path="res://assets/audio/sfx/sfx_metal_creak_big_v1.ogg" id="9_aqrr1"]
 [ext_resource type="PackedScene" uid="uid://ch3pt48se8yy7" path="res://assets/models/hydrophone.glb" id="10_38com"]
@@ -40,14 +41,28 @@ spot_angle = 70.0
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.6, -2.39)
 gui = ExtResource("5_8cjjv")
 
-[node name="Terminal2" parent="Terminals" instance=ExtResource("4_80sin")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.64697, 1.43563, -1.63955)
-gui = ExtResource("6_wb0ro")
-
 [node name="Terminal3" parent="Terminals" instance=ExtResource("4_80sin")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.79, 1.8, 0)
+transform = Transform3D(0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202, -2.66896, 1.8, -0.858023)
+gui = ExtResource("6_wb0ro")
+drone = 3
+
+[node name="Terminal5" parent="Terminals" instance=ExtResource("4_80sin")]
+transform = Transform3D(0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, 0.34202, 2.65714, 1.8, -0.857954)
+gui = ExtResource("6_wb0ro")
+drone = 2
+
+[node name="Terminal7" parent="Terminals" instance=ExtResource("4_80sin")]
+transform = Transform3D(-0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, -0.34202, 2.65714, 1.8, 0.938626)
+gui = ExtResource("8_37bqx")
+
+[node name="Terminal4" parent="Terminals" instance=ExtResource("4_80sin")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -1.99, 1.8, -1.88784)
 gui = ExtResource("6_wb0ro")
 drone = 1
+
+[node name="Terminal6" parent="Terminals" instance=ExtResource("4_80sin")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.99892, 1.8, -1.88892)
+gui = ExtResource("6_wb0ro")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_wsitc")
@@ -120,7 +135,19 @@ transform = Transform3D(0.9457, 0, -0.32504, 0, 1, 0, 0.32504, 0, 0.9457, 0, -0.
 visible = false
 
 [node name="big_computer2" parent="." instance=ExtResource("10_u7gvk")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -2.8, 1, 0)
+transform = Transform3D(0.17101, 0, 0.469846, 0, 0.5, 0, -0.469846, 0, 0.17101, -2.67836, 1, -0.861444)
+
+[node name="big_computer4" parent="." instance=ExtResource("10_u7gvk")]
+transform = Transform3D(0.17101, 0, -0.469846, 0, 0.5, 0, 0.469846, 0, 0.17101, 2.66654, 1, -0.861374)
+
+[node name="big_computer6" parent="." instance=ExtResource("10_u7gvk")]
+transform = Transform3D(-0.17101, 0, -0.469846, 0, 0.5, 0, 0.469846, 0, -0.17101, 2.66654, 1, 0.942046)
+
+[node name="big_computer3" parent="." instance=ExtResource("10_u7gvk")]
+transform = Transform3D(0.353553, 0, 0.353553, 0, 0.5, 0, -0.353553, 0, 0.353553, -2, 1, -1.9)
+
+[node name="big_computer5" parent="." instance=ExtResource("10_u7gvk")]
+transform = Transform3D(0.353553, 0, -0.353553, 0, 0.5, 0, 0.353553, 0, 0.353553, 2.01108, 1, -1.89892)
 
 [node name="handle" parent="." instance=ExtResource("14_ptrm3")]
 transform = Transform3D(-0.707107, 0.707107, -6.18172e-08, 0.707107, 0.707107, 6.18172e-08, 8.74228e-08, 0, -1, -0.000675321, 1.07195, 3.86675)

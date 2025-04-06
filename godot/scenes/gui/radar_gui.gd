@@ -34,7 +34,8 @@ func _draw():
 	for d in ScrGlobalRts.drones:
 		draw_circle(d.pos/2, 10, Color.BLUE)
 	for h in ScrGlobalRts.hydrophones:
-		draw_line(h.pos/2 + (Vector2.DOWN * 5), h.pos/2 + (Vector2.UP * 5), Color.GREEN, 2)
+		if not h.state == ScrGlobalRts.Hydrophone.State.IN_BASE:
+			draw_line(h.pos/2 + (Vector2.DOWN * 5), h.pos/2 + (Vector2.UP * 5), Color.GREEN, 2)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
