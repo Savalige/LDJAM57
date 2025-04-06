@@ -5,7 +5,6 @@
 
 [node name="ScnHydrophone" type="Node2D"]
 script = ExtResource("1_t8oj4")
-id = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.247059, 0.494118, 0, 1)
