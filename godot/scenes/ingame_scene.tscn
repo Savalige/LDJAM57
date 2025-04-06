@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=18 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bhg45iwrlmt61" path="res://assets/models/dome.tscn" id="2_cv5ji"]
@@ -14,14 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://c66uk43kn3wig" path="res://assets/models/big_computer.glb" id="10_u7gvk"]
 [ext_resource type="PackedScene" uid="uid://q1jw2jbtxere" path="res://assets/models/button.tscn" id="10_v5cgc"]
 [ext_resource type="PackedScene" uid="uid://c1i3q0ns6qef1" path="res://assets/models/handle.glb" id="14_ptrm3"]
+[ext_resource type="PackedScene" uid="uid://cvnuvm37jocq0" path="res://assets/modelscenes/ceilinglamp.tscn" id="15_l0a63"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cnahk"]
 size = Vector3(0.9, 0.5, 1)
 
 [sub_resource type="Environment" id="Environment_ek4vg"]
 ambient_light_color = Color(0.948636, 0.787042, 0.592995, 1)
-ambient_light_energy = 0.04
-glow_enabled = true
+ambient_light_energy = 0.0
 glow_bloom = 0.04
 fog_enabled = true
 fog_light_color = Color(0.954949, 0.807419, 0.631515, 1)
@@ -34,8 +34,13 @@ script = ExtResource("1_objyc")
 [node name="dome" parent="." instance=ExtResource("2_cv5ji")]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.74994, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.80827, 0)
 light_energy = 3.0
+spot_angle = 70.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.98319, 0)
+light_energy = 2.0
 spot_angle = 70.0
 
 [node name="Player" parent="." instance=ExtResource("3_kyerf")]
@@ -137,6 +142,9 @@ transform = Transform3D(-0.707107, 0.707107, -6.18172e-08, 0.707107, 0.707107, 6
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ek4vg")
+
+[node name="ceilinglamp" parent="." instance=ExtResource("15_l0a63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62046, 0)
 
 [connection signal="timeout" from="CreakTimer" to="." method="_on_creak_timer_timeout"]
 [connection signal="timeout" from="BonkTimer" to="." method="_on_bonk_timer_timeout"]
