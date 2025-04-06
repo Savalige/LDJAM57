@@ -28,6 +28,11 @@ offset_left = 48.0
 offset_top = 71.0
 offset_right = 114.0
 offset_bottom = 102.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.691436, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0.713726, 0, 1)
+theme_override_fonts/font = ExtResource("2_4k63x")
+theme_override_font_sizes/font_size = 24
 text = "Pick Up"
 
 [node name="Drop" type="Button" parent="."]
@@ -36,6 +41,8 @@ offset_left = 47.0
 offset_top = 101.0
 offset_right = 94.0
 offset_bottom = 132.0
+theme_override_fonts/font = ExtResource("2_4k63x")
+theme_override_font_sizes/font_size = 24
 text = "Drop"
 
 [node name="Photo" type="Button" parent="."]
@@ -44,6 +51,8 @@ offset_left = 50.0
 offset_top = 37.0
 offset_right = 109.0
 offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("2_4k63x")
+theme_override_font_sizes/font_size = 24
 text = "Take Photo"
 
 [node name="Drone" type="Label" parent="."]
@@ -51,8 +60,8 @@ layout_mode = 0
 offset_left = 50.0
 offset_right = 146.0
 offset_bottom = 30.0
-theme_override_fonts/font = ExtResource("2_rm4wm")
 text = "DRONE"
+label_settings = SubResource("LabelSettings_tejxo")
 
 [node name="Info" type="Label" parent="."]
 layout_mode = 0
@@ -60,8 +69,8 @@ offset_left = 48.0
 offset_top = 148.0
 offset_right = 108.0
 offset_bottom = 171.0
-theme_override_fonts/font = ExtResource("2_rm4wm")
 text = "Waiting..."
+label_settings = SubResource("LabelSettings_tejxo")
 
 [node name="ConnectionLost" type="Label" parent="."]
 visible = false
@@ -71,8 +80,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_rm4wm")
 text = "CONNECTION LOST..."
+label_settings = SubResource("LabelSettings_k5f3u")
 horizontal_alignment = 1
 vertical_alignment = 1
 
