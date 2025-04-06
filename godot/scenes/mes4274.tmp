@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccoj8cm8b8cp5"]
+
+[ext_resource type="Script" path="res://scenes/message_terminal.gd" id="1_jj3ny"]
+[ext_resource type="Shader" path="res://scenes/PSX.gdshader" id="1_r01ml"]
+[ext_resource type="FontFile" uid="uid://ckgvkkjrnnnqi" path="res://fonts/Glass_TTY_VT220.ttf" id="3_570ql"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ngul7"]
+shader = ExtResource("1_r01ml")
+shader_parameter/line_density = 30.0
+shader_parameter/line_sharpness = 3.0
+shader_parameter/line_strength = 0.4
+shader_parameter/curvature_x = 0.03
+shader_parameter/curvature_y = 0.05
+shader_parameter/vignette_strength = 0.2
+shader_parameter/brightness = 1.1
+shader_parameter/flicker_strength = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o0xmh"]
+shader = ExtResource("1_r01ml")
+shader_parameter/line_density = 30.0
+shader_parameter/line_sharpness = 3.0
+shader_parameter/line_strength = 0.4
+shader_parameter/curvature_x = 0.03
+shader_parameter/curvature_y = 0.05
+shader_parameter/vignette_strength = 0.2
+shader_parameter/brightness = 1.1
+shader_parameter/flicker_strength = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nexca"]
+shader = ExtResource("1_r01ml")
+shader_parameter/line_density = 30.0
+shader_parameter/line_sharpness = 3.0
+shader_parameter/line_strength = 0.4
+shader_parameter/curvature_x = 0.03
+shader_parameter/curvature_y = 0.05
+shader_parameter/vignette_strength = 0.2
+shader_parameter/brightness = 1.1
+shader_parameter/flicker_strength = 0.01
+
+[node name="MessageTerminal" type="Control"]
+material = SubResource("ShaderMaterial_ngul7")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jj3ny")
+character_delay = null
+pause_after_sender = null
+auto_close_delay = null
+max_history_lines = null
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+material = SubResource("ShaderMaterial_o0xmh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer"]
+material = SubResource("ShaderMaterial_nexca")
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CharRevealTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = -11.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0.6, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_570ql")
+theme_override_font_sizes/normal_font_size = 15
+text = "Test"
