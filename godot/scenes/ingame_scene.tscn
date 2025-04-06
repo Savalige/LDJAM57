@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=16 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://diquwv3uklemf" path="res://scenes/player/player.tscn" id="3_kyerf"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ch3pt48se8yy7" path="res://assets/models/hydrophone.glb" id="10_38com"]
 [ext_resource type="PackedScene" uid="uid://c66uk43kn3wig" path="res://assets/models/big_computer.glb" id="10_u7gvk"]
 [ext_resource type="PackedScene" uid="uid://q1jw2jbtxere" path="res://assets/models/button.tscn" id="10_v5cgc"]
+[ext_resource type="PackedScene" uid="uid://c1i3q0ns6qef1" path="res://assets/models/handle.glb" id="14_ptrm3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cnahk"]
 size = Vector3(0.9, 0.5, 1)
@@ -118,6 +119,9 @@ visible = false
 
 [node name="big_computer2" parent="." instance=ExtResource("10_u7gvk")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -2.8, 1, 0)
+
+[node name="handle" parent="." instance=ExtResource("14_ptrm3")]
+transform = Transform3D(-0.707107, 0.707107, -6.18172e-08, 0.707107, 0.707107, 6.18172e-08, 8.74228e-08, 0, -1, -0.000675321, 1.07195, 3.86675)
 
 [connection signal="timeout" from="CreakTimer" to="." method="_on_creak_timer_timeout"]
 [connection signal="timeout" from="BonkTimer" to="." method="_on_bonk_timer_timeout"]
