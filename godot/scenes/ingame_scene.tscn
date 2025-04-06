@@ -34,12 +34,12 @@ script = ExtResource("1_objyc")
 [node name="dome" parent="." instance=ExtResource("2_cv5ji")]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.80827, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.70126, 0)
 light_energy = 3.0
 spot_angle = 70.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.98319, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.10747, 0)
 light_energy = 2.0
 spot_angle = 70.0
 
