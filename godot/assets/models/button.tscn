@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://q1jw2jbtxere"]
+
+[ext_resource type="PackedScene" uid="uid://cl0aai1pbd1n4" path="res://assets/models/button.glb" id="1_a3l4m"]
+[ext_resource type="Script" path="res://button.gd" id="2_x826w"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kapxu"]
+height = 0.05
+radius = 0.15
+
+[node name="button" instance=ExtResource("1_a3l4m")]
+script = ExtResource("2_x826w")
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0740665, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+shape = SubResource("CylinderShape3D_kapxu")
+
+[node name="Timer" type="Timer" parent="." index="3"]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
