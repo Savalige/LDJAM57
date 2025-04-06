@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bufdxxjqmas0k"]
+
+[ext_resource type="Script" path="res://scenes/RTS/scn_hydrophone.gd" id="1_t8oj4"]
+[ext_resource type="Texture2D" uid="uid://dqrn0anp4oqkf" path="res://sprites/Hydrophone.svg" id="1_wn6jx"]
+
+[node name="ScnHydrophone" type="Node2D"]
+script = ExtResource("1_t8oj4")
+id = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.247059, 0.494118, 0, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_wn6jx")

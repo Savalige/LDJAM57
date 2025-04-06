@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwma7hmhthf30"]
+
+[ext_resource type="Script" path="res://scenes/gui/drone_gui.gd" id="1_23hna"]
+[ext_resource type="FontFile" uid="uid://dwqqpio6ubqww" path="res://fonts/fnt_i_pixel_u.ttf" id="2_4k63x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tejxo"]
+font = ExtResource("2_4k63x")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_k5f3u"]
+font = ExtResource("2_4k63x")
+font_size = 32
+
+[node name="DroneGui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_23hna")
+
+[node name="PickUp" type="Button" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 71.0
+offset_right = 114.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_hover_color = Color(0, 0.691436, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0.713726, 0, 1)
+theme_override_fonts/font = ExtResource("2_4k63x")
+theme_override_font_sizes/font_size = 24
+text = "Pick Up"
+
+[node name="Drop" type="Button" parent="."]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 101.0
+offset_right = 94.0
+offset_bottom = 132.0
+theme_override_fonts/font = ExtResource("2_4k63x")
+theme_override_font_sizes/font_size = 24
+text = "Drop"
+
+[node name="Photo" type="Button" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 37.0
+offset_right = 109.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("2_4k63x")
+theme_override_font_sizes/font_size = 24
+text = "Take Photo"
+
+[node name="Drone" type="Label" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 146.0
+offset_bottom = 30.0
+text = "DRONE"
+label_settings = SubResource("LabelSettings_tejxo")
+
+[node name="Info" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 148.0
+offset_right = 108.0
+offset_bottom = 171.0
+text = "Waiting..."
+label_settings = SubResource("LabelSettings_tejxo")
+
+[node name="ConnectionLost" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONNECTION LOST..."
+label_settings = SubResource("LabelSettings_k5f3u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 198.0
+offset_right = 198.0
+offset_bottom = 229.0
+placeholder_text = "Cordinates"
+max_length = 2
+
+[connection signal="button_up" from="PickUp" to="." method="_on_pick_up_button_up"]
+[connection signal="button_up" from="Drop" to="." method="_on_drop_button_up"]
+[connection signal="button_up" from="Photo" to="." method="_on_drop_button_up"]
+[connection signal="focus_entered" from="LineEdit" to="." method="_on_line_edit_focus_entered"]
+[connection signal="focus_exited" from="LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dj81t3myqq0f3"
+path="res://.godot/imported/sfx jumping on metal hard.mp3-b469d577db9dadc61da5f604301be72a.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/sfx jumping on metal hard.mp3"
+dest_files=["res://.godot/imported/sfx jumping on metal hard.mp3-b469d577db9dadc61da5f604301be72a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

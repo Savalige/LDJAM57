@@ -10,19 +10,25 @@ config_version=5
 
 [application]
 
-config/name="MyGame"
-run/main_scene="res://scenes/boot/godot/godot_bootsplash_scene.tscn"
+config/name="LDJAM 57"
+run/main_scene="res://scenes/main_menu_scene.tscn"
 config/features=PackedStringArray("4.2")
+boot_splash/bg_color=Color(0.0588235, 0.054902, 0.0901961, 1)
 config/icon="res://icon.svg"
+
+[audio]
+
+driver/output_latency=90
 
 [autoload]
 
 UserSettings="*res://settings/user_settings.gd"
+ScrGlobalRts="*res://scenes/RTS/scr_global_rts.gd"
 
 [display]
 
-window/size/viewport_width=576
-window/size/viewport_height=324
+window/size/viewport_width=960
+window/size/viewport_height=540
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
@@ -89,8 +95,14 @@ pause={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://i18n/translation.de.translation", "res://i18n/translation.en.translation")
+locale/translations=PackedStringArray("res://i18n/translation.en.translation")
+
+[layer_names]
+
+2d_physics/layer_1="Drones"
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.211765, 0.239216, 0.321569, 1)
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
