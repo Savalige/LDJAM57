@@ -17,7 +17,7 @@ layout_mode = 0
 offset_right = 500.0
 offset_bottom = 500.0
 
-[node name="Drop" type="Button" parent="."]
+[node name="Ping" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -31,3 +31,9 @@ theme_override_fonts/font = ExtResource("2_6vyr4")
 theme_override_font_sizes/font_size = 24
 text = "Ping
 "
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="button_up" from="Ping" to="." method="_on_ping_button_up"]
