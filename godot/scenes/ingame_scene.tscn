@@ -1,13 +1,13 @@
 [gd_scene load_steps=16 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
+[ext_resource type="PackedScene" uid="uid://bhg45iwrlmt61" path="res://assets/models/dome.tscn" id="2_cv5ji"]
 [ext_resource type="PackedScene" uid="uid://diquwv3uklemf" path="res://scenes/player/player.tscn" id="3_kyerf"]
 [ext_resource type="PackedScene" uid="uid://b3myav8ca5cgh" path="res://scenes/gui/terminal.tscn" id="4_80sin"]
 [ext_resource type="PackedScene" uid="uid://c4l283c886ddf" path="res://assets/models/hydrophone.tscn" id="4_ykmf7"]
 [ext_resource type="PackedScene" uid="uid://cvih2u8dglq46" path="res://scenes/gui/radar_gui.tscn" id="5_8cjjv"]
 [ext_resource type="PackedScene" uid="uid://cwma7hmhthf30" path="res://scenes/gui/drone_gui.tscn" id="6_wb0ro"]
 [ext_resource type="AudioStream" uid="uid://gngpf7jliind" path="res://assets/audio/sfx/SFX_UNDERWATER_AMBIENCE_LOOP_1.ogg" id="6_wsitc"]
-[ext_resource type="PackedScene" uid="uid://vt3basomaw3c" path="res://assets/models/dome.glb" id="7_iej76"]
 [ext_resource type="AudioStream" uid="uid://crfvexitde8yi" path="res://assets/audio/sfx/Footsteps/Metal/sfx_footstep_metal_hard.wav" id="8_jh448"]
 [ext_resource type="AudioStream" uid="uid://b88j1iyp41fkj" path="res://assets/audio/sfx/sfx_metal_creak_big_v1.ogg" id="9_aqrr1"]
 [ext_resource type="PackedScene" uid="uid://ch3pt48se8yy7" path="res://assets/models/hydrophone.glb" id="10_38com"]
@@ -21,12 +21,12 @@ size = Vector3(0.9, 0.5, 1)
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
 
+[node name="dome" parent="." instance=ExtResource("2_cv5ji")]
+
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.74994, 0)
-light_energy = 1.5
+light_energy = 3.0
 spot_angle = 70.0
-
-[node name="dome" parent="." instance=ExtResource("7_iej76")]
 
 [node name="Player" parent="." instance=ExtResource("3_kyerf")]
 
