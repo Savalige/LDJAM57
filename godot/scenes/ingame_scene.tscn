@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=24 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bhg45iwrlmt61" path="res://assets/models/dome.tscn" id="2_cv5ji"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://ccueyg4c7dv4r" path="res://assets/modelscenes/cabinetv2.tscn" id="17_7uxhl"]
 [ext_resource type="PackedScene" uid="uid://b28blg73nlxpl" path="res://assets/modelscenes/pipe.tscn" id="19_mk7s3"]
 [ext_resource type="PackedScene" uid="uid://bbu0mwhlnhcr0" path="res://assets/models/cup.glb" id="20_3kdpv"]
+[ext_resource type="PackedScene" uid="uid://boyvhh8y26vgo" path="res://assets/modelscenes/messageterminal_v_2.tscn" id="21_1yaq8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cnahk"]
 size = Vector3(0.9, 0.5, 1)
@@ -230,6 +231,9 @@ transform = Transform3D(-1, 2.98023e-08, -1.77636e-15, 8.57914e-16, -4.37114e-08
 
 [node name="cup" parent="." instance=ExtResource("20_3kdpv")]
 transform = Transform3D(0.0707932, 0, 0.0372603, 0, 0.08, 0, -0.0372603, 0, 0.0707932, -1.03436, 0.999643, 3.55089)
+
+[node name="messageterminalV2" parent="." instance=ExtResource("21_1yaq8")]
+transform = Transform3D(-0.263351, 0, 0.9647, 0, 1, 0, -0.9647, 0, -0.263351, -2.89772, 1.00373, 1.03504)
 
 [connection signal="timeout" from="CreakTimer" to="." method="_on_creak_timer_timeout"]
 [connection signal="timeout" from="BonkTimer" to="." method="_on_bonk_timer_timeout"]

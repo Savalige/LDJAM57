@@ -15,5 +15,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tbm7i")
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+color = Color(0, 0, 0, 1)
+
 [node name="MessageTerminal" parent="." instance=ExtResource("2_ylbch")]
 layout_mode = 1
