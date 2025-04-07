@@ -47,6 +47,7 @@ theme_override_font_sizes/font_size = 48
 text = "You win"
 
 [node name="Lose" type="Label" parent="Camera3D/UI"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
