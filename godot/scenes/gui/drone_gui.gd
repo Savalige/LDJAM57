@@ -62,6 +62,8 @@ func _on_pick_up_button_up():
 	click_audio.play()
 	if not ScrGlobalRts.drone_attempt_pickup(drone):
 		info.text = "ERROR: no item"
+	else:
+		info.text = "Picked up item"
 
 
 func _on_drop_button_up():
@@ -83,7 +85,6 @@ func _on_line_edit_text_submitted(_new_text):
 	click_audio.play()
 	text.release_focus()
 	var value = parse(text.text)
-	print(value)
 	if !value:
 		info.text = "ERROR: not a valid position"
 		error_audio.play()

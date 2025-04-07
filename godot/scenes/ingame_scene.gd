@@ -14,11 +14,26 @@ extends Node2D
 @onready var button = $button
 @onready var box: Node3D = $dome/Box
 @onready var cabinet = $cabinetv2
+@onready var monsters = $Monsters
+@onready var hydrophones = $Hydrophones
 
 var rng = RandomNumberGenerator.new()
 
 func _ready() -> void:
 	fade_overlay.visible = true
+	
+	var monster_audio = ResourceLoader.load("res://assets/audio/music/hunted underwater song 1.ogg")
+	for monster in ScrGlobalRts.monsters:
+		var audio = AudioStreamPlayer3D.new()
+		audio.position = Vector3(monster.pos.x, 0, monster.pos.y) - Vector3(500, 0, 500)
+		audio.stream = monster_audio
+		audio.autoplay = true
+		monsters.add_child(audio)
+	
+	for phone in ScrGlobalRts.hydrophones:
+		var listener = AudioListener3D.new()
+		listener.position = Vector3(phone.pos.x, 0, phone.pos.y) - Vector3(500, 0, 500)
+		hydrophones.add_child(listener)
 	
 	for terminal in terminals.get_children():
 		terminal.ray = player.ray
@@ -47,7 +62,7 @@ func _input(event) -> void:
 		get_tree().paused = true
 		pause_overlay.grab_button_focus()
 		pause_overlay.visible = true
-	if event.is_action_released("interact"):
+	if event.is_action_released("interact") and box.visible == false:
 		if player.ray != null:
 			if player.ray.is_colliding() and player.ray.get_collider() == delivery_area:
 				if delivery_hydrophone.visible == false and player.hydrophone.visible == true:
@@ -63,6 +78,10 @@ func _save_game() -> void:
 
 func _physics_process(delta):
 	ScrGlobalRts.physics_step(delta)
+	for i in len(ScrGlobalRts.monsters):
+		monsters.get_children()[i].position = Vector3(ScrGlobalRts.monsters[i].pos.x, 0, ScrGlobalRts.monsters[i].pos.y) - Vector3(500, 0, 500)
+	for i in len(ScrGlobalRts.hydrophones):
+		hydrophones.get_children()[i].position = Vector3(ScrGlobalRts.hydrophones[i].pos.x, 0, ScrGlobalRts.hydrophones[i].pos.y) - Vector3(500, 0, 500)
 
 func _on_bonk_timer_timeout():
 	bonks.get_children()[rng.randi() % bonks.get_child_count()].play()

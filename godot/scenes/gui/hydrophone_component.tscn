@@ -17,8 +17,10 @@ script = ExtResource("1_7ygir")
 layout_mode = 2
 text = "Label"
 
-[node name="CheckBox" type="CheckBox" parent="."]
+[node name="CheckButton" type="CheckButton" parent="."]
 layout_mode = 2
 
 [node name="Deployment" type="Label" parent="."]
 layout_mode = 2
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

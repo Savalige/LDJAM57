@@ -1,10 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=23 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bhg45iwrlmt61" path="res://assets/models/dome.tscn" id="2_cv5ji"]
 [ext_resource type="PackedScene" uid="uid://diquwv3uklemf" path="res://scenes/player/player.tscn" id="3_kyerf"]
 [ext_resource type="PackedScene" uid="uid://b3myav8ca5cgh" path="res://scenes/gui/terminal.tscn" id="4_80sin"]
-[ext_resource type="PackedScene" uid="uid://c4l283c886ddf" path="res://assets/models/hydrophone.tscn" id="4_ykmf7"]
 [ext_resource type="PackedScene" uid="uid://cvih2u8dglq46" path="res://scenes/gui/radar_gui.tscn" id="5_8cjjv"]
 [ext_resource type="PackedScene" uid="uid://cwma7hmhthf30" path="res://scenes/gui/drone_gui.tscn" id="6_wb0ro"]
 [ext_resource type="AudioStream" uid="uid://gngpf7jliind" path="res://assets/audio/sfx/SFX_UNDERWATER_AMBIENCE_LOOP_1.ogg" id="6_wsitc"]
@@ -18,9 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://cvnuvm37jocq0" path="res://assets/modelscenes/ceilinglamp.tscn" id="15_l0a63"]
 [ext_resource type="PackedScene" uid="uid://xw85oyp4s2s8" path="res://assets/modelscenes/cabinet.tscn" id="16_8pjoi"]
 [ext_resource type="PackedScene" uid="uid://ccueyg4c7dv4r" path="res://assets/modelscenes/cabinetv2.tscn" id="17_7uxhl"]
-[ext_resource type="PackedScene" uid="uid://b28blg73nlxpl" path="res://assets/modelscenes/pipe.tscn" id="19_mk7s3"]
-[ext_resource type="PackedScene" uid="uid://bbu0mwhlnhcr0" path="res://assets/models/cup.glb" id="20_3kdpv"]
-[ext_resource type="PackedScene" uid="uid://boyvhh8y26vgo" path="res://assets/modelscenes/messageterminal_v_2.tscn" id="21_1yaq8"]
+[ext_resource type="PackedScene" path="res://assets/modelscenes/pipe.tscn" id="19_mk7s3"]
+[ext_resource type="PackedScene" path="res://assets/models/cup.glb" id="20_3kdpv"]
+[ext_resource type="PackedScene" uid="uid://dt7ox5ys5k06w" path="res://assets/modelscenes/messageterminal_v_2.tscn" id="21_1yaq8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cnahk"]
 size = Vector3(0.9, 0.5, 1)
@@ -51,9 +50,11 @@ spot_angle = 70.0
 
 [node name="Player" parent="." instance=ExtResource("3_kyerf")]
 
-[node name="Items" type="Node" parent="."]
+[node name="Monsters" type="Node" parent="."]
 
-[node name="hydrophone" parent="Items" instance=ExtResource("4_ykmf7")]
+[node name="Hydrophones" type="Node" parent="."]
+
+[node name="Items" type="Node" parent="."]
 
 [node name="Terminals" type="Node" parent="."]
 
@@ -71,9 +72,10 @@ transform = Transform3D(0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, 0.34202, 2.
 gui = ExtResource("6_wb0ro")
 drone = 2
 
-[node name="Terminal7" parent="Terminals" instance=ExtResource("4_80sin")]
+[node name="Terminal7" parent="Terminals" node_paths=PackedStringArray("hydrophones") instance=ExtResource("4_80sin")]
 transform = Transform3D(-0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, -0.34202, 2.65714, 1.8, 0.938626)
 gui = ExtResource("8_37bqx")
+hydrophones = NodePath("../../Hydrophones")
 
 [node name="Terminal4" parent="Terminals" instance=ExtResource("4_80sin")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -1.99, 1.8, -1.88784)
@@ -183,6 +185,7 @@ transform = Transform3D(0.560596, 0, 0.82809, 0, 1, 0, -0.82809, 0, 0.560596, -1
 
 [node name="cabinetv2" parent="." instance=ExtResource("17_7uxhl")]
 transform = Transform3D(0.916795, 0, 0.399357, 0, 1, 0, -0.399357, 0, 0.916795, -1.93492, 1.00011, 2.80608)
+amount = 4
 
 [node name="pipe2" parent="." instance=ExtResource("19_mk7s3")]
 transform = Transform3D(0.174353, 0, 0.984683, 0, 1, 0, -0.984683, 0, 0.174353, -2.45918, -1.41528, -1.10567)
