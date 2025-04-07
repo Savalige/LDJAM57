@@ -19,8 +19,6 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
-var done = false
-
 func _ready() -> void:
 	fade_overlay.visible = true
 	
@@ -59,7 +57,7 @@ func _ready() -> void:
 	ScrGlobalRts.base_box_pickup.connect(item_taken)
 
 func is_done():
-	done = true
+	player.win.emit()
 
 func _input(event) -> void:
 	if event.is_action_pressed("pause") and not pause_overlay.visible:
@@ -70,9 +68,6 @@ func _input(event) -> void:
 		pause_overlay.visible = true
 	if event.is_action_released("interact"):
 		if player.ray != null:
-			if player.ray.is_colliding() and player.ray.get_collider() == $Area3D:
-				if done:
-					player.win.emit()
 			if player.ray.is_colliding() and player.ray.get_collider() == delivery_area and box.visible == false:
 				if delivery_hydrophone.visible == false and player.hydrophone.visible == true:
 					player.hydrophone.visible = false
