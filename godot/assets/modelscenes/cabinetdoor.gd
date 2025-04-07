@@ -7,8 +7,8 @@ var target_rotation = 0.0
 var current_rotation = 0.0
 
 # Door settings
-@export var open_angle = 90.0  # How far the door opens in degrees
-@export var rotation_speed = 2.0  # Speed of door rotation
+@export var open_angle = 120.0  # How far the door opens in degrees
+@export var rotation_speed = 2.5  # Speed of door rotation
 
 func _process(delta):
 	# Smoothly rotate door to target rotation

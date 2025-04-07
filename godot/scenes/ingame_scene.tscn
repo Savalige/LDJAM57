@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=23 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bhg45iwrlmt61" path="res://assets/models/dome.tscn" id="2_cv5ji"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cvih2u8dglq46" path="res://scenes/gui/radar_gui.tscn" id="5_8cjjv"]
 [ext_resource type="PackedScene" uid="uid://cwma7hmhthf30" path="res://scenes/gui/drone_gui.tscn" id="6_wb0ro"]
 [ext_resource type="AudioStream" uid="uid://gngpf7jliind" path="res://assets/audio/sfx/SFX_UNDERWATER_AMBIENCE_LOOP_1.ogg" id="6_wsitc"]
-[ext_resource type="PackedScene" uid="uid://nqd65nhfcn1m" path="res://scenes/gui/hydrophone_gui.tscn" id="8_37bqx"]
+[ext_resource type="PackedScene" uid="uid://3epf8h4lu6vy" path="res://scenes/gui/hydrophone_gui.tscn" id="8_37bqx"]
 [ext_resource type="AudioStream" uid="uid://crfvexitde8yi" path="res://assets/audio/sfx/Footsteps/Metal/sfx_footstep_metal_hard.wav" id="8_jh448"]
 [ext_resource type="AudioStream" uid="uid://b88j1iyp41fkj" path="res://assets/audio/sfx/sfx_metal_creak_big_v1.ogg" id="9_aqrr1"]
 [ext_resource type="PackedScene" uid="uid://ch3pt48se8yy7" path="res://assets/models/hydrophone.glb" id="10_38com"]
@@ -18,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://cvnuvm37jocq0" path="res://assets/modelscenes/ceilinglamp.tscn" id="15_l0a63"]
 [ext_resource type="PackedScene" uid="uid://xw85oyp4s2s8" path="res://assets/modelscenes/cabinet.tscn" id="16_8pjoi"]
 [ext_resource type="PackedScene" uid="uid://ccueyg4c7dv4r" path="res://assets/modelscenes/cabinetv2.tscn" id="17_7uxhl"]
+[ext_resource type="PackedScene" uid="uid://b28blg73nlxpl" path="res://assets/modelscenes/pipe.tscn" id="19_mk7s3"]
+[ext_resource type="PackedScene" uid="uid://bbu0mwhlnhcr0" path="res://assets/models/cup.glb" id="20_3kdpv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cnahk"]
 size = Vector3(0.9, 0.5, 1)
@@ -180,6 +182,54 @@ transform = Transform3D(0.560596, 0, 0.82809, 0, 1, 0, -0.82809, 0, 0.560596, -1
 
 [node name="cabinetv2" parent="." instance=ExtResource("17_7uxhl")]
 transform = Transform3D(0.916795, 0, 0.399357, 0, 1, 0, -0.399357, 0, 0.916795, -1.93492, 1.00011, 2.80608)
+
+[node name="pipe2" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(0.174353, 0, 0.984683, 0, 1, 0, -0.984683, 0, 0.174353, -2.45918, -1.41528, -1.10567)
+
+[node name="pipe3" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.600594, 0.494039, -2.5846)
+
+[node name="pipe4" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.600594, 0.0381455, -2.5846)
+
+[node name="pipe5" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.600594, -0.308553, -2.5846)
+
+[node name="pipe6" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1.41727, 2.30256, -2.42638)
+
+[node name="pipe7" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(0.285398, -0.953646, 0.095429, 0.0406122, 0.111514, 0.992933, -0.957548, -0.279506, 0.0705556, -2.95723, 1.07389, -0.0214295)
+
+[node name="pipe8" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(0.230721, 0, -0.326753, 0, 0.4, 0, 0.326753, 0, 0.230721, 3.36383, 0.747782, -0.486553)
+
+[node name="pipe9" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(-0.718903, 0, -0.69511, 0, 1, 0, 0.69511, 0, -0.718903, 2.77174, -0.407461, 2.26447)
+
+[node name="pipe10" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.542681, 3.6486, -1.28472)
+
+[node name="pipe14" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.542681, 3.66872, -0.203092)
+
+[node name="pipe15" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(1, -2.98023e-08, 2.66454e-15, 8.57914e-16, -4.37114e-08, -1, 2.98023e-08, 1, -4.37114e-08, 0.206847, 3.50086, -0.455569)
+
+[node name="pipe16" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(-1.39091e-08, 1, -4.37114e-08, 8.57914e-16, -4.37114e-08, -1, -1, -1.39091e-08, -7.5385e-16, -2.63655, 3.44813, -1.08555)
+
+[node name="pipe11" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(2.98023e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, 2.98023e-08, -8.88178e-16, 0.206748, 3.6486, 0.369111)
+
+[node name="pipe12" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(-1, 2.98023e-08, -1.77636e-15, 8.57914e-16, -4.37114e-08, -1, -2.98023e-08, -1, 4.37114e-08, 0.206748, 3.7756, 0.263783)
+
+[node name="pipe13" parent="." instance=ExtResource("19_mk7s3")]
+transform = Transform3D(-1, 2.98023e-08, -1.77636e-15, 8.57914e-16, -4.37114e-08, -1, -2.98023e-08, -1, 4.37114e-08, 0.206748, 3.7756, 2.40603)
+
+[node name="cup" parent="." instance=ExtResource("20_3kdpv")]
+transform = Transform3D(0.0707932, 0, 0.0372603, 0, 0.08, 0, -0.0372603, 0, 0.0707932, -1.03436, 0.999643, 3.55089)
 
 [connection signal="timeout" from="CreakTimer" to="." method="_on_creak_timer_timeout"]
 [connection signal="timeout" from="BonkTimer" to="." method="_on_bonk_timer_timeout"]

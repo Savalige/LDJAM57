@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://3epf8h4lu6vy"]
 
 [ext_resource type="Script" path="res://scenes/gui/hydrophone_gui.gd" id="1_qw5x0"]
-[ext_resource type="PackedScene" uid="uid://baovq6yspnuun" path="res://scenes/gui/hydrophone_component.tscn" id="2_tcgrh"]
+[ext_resource type="PackedScene" uid="uid://ba0rvdchow2xw" path="res://scenes/gui/hydrophone_component.tscn" id="2_tcgrh"]
 
 [node name="HydrophoneGui" type="Control"]
 layout_mode = 3
