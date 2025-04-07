@@ -149,6 +149,20 @@ class Roamer extends Monster:
 		self.target = Vector2(rng.randf_range(area.position.x, area.position.x+area.size.x), rng.randf_range(area.position.y, area.position.y+area.size.y))
 		self.swim_delay = rng.randf_range(swim_delay_min, swim_delay_max)
 
+class PointOfInterest:
+	const detect_range_squared = 75*75
+	
+	var pos          : Vector2
+	var id           : int
+	var visible      : bool
+	var investigated : bool
+	
+	func _init(pos : Vector2, id : int, visible):
+		self.pos = pos
+		self.id = id
+		self.visible = visible
+		self.investigated = false
+
 var drones : Array[Drone] = [
 	Drone.new(Vector2(550, 500), 0),
 	Drone.new(Vector2(500, 450), -PI/2),
@@ -164,6 +178,10 @@ var monsters : Array[Monster] = [
 	Roamer.new(Vector2(500, 850), -PI/2, Rect2(0, 700, 1000, 300), 15, 50),
 	Roamer.new(Vector2(850, 500), PI, Rect2(700, 0, 300, 1000), 15, 50),
 	Roamer.new(Vector2(800, 800), -PI*3/4, Rect2(600, 600, 400, 400), 20, 20)
+]
+
+var points_of_interest = [
+	PointOfInterest.new(Vector2(100, 100), 1, false)
 ]
 
 enum BaseBox {EMPTY, HYDROPHONE}
@@ -201,6 +219,7 @@ func drone_attempt_pickup(id : int) -> bool:
 			for h in hydrophones:
 				if h.state == Hydrophone.State.IN_BASE:
 					h.state = Hydrophone.State.CARRIED
+					h.pos = drones[id].pos
 					drones[id].holding = h
 					drones[id].hold_type = Drone.HoldType.HYDROPHONE
 					
@@ -226,6 +245,7 @@ func drone_attempt_pickup(id : int) -> bool:
 		
 		# Only if Hydrophone !!!TODO ADD TYPE CHECK!!!
 		closest_object.state = Hydrophone.State.CARRIED
+		closest_object.pos = drones[id].pos
 		return true
 	
 	return false
@@ -241,6 +261,7 @@ func drone_attempt_drop(id : int) -> bool:
 		if base_box == BaseBox.EMPTY:
 			if drones[id].hold_type == Drone.HoldType.HYDROPHONE:
 				drones[id].holding.state = Hydrophone.State.IN_BASE
+				drones[id].holding.pos = base_pos
 				drones[id].holding = null
 				drones[id].hold_type = Drone.HoldType.EMPTY
 				
@@ -251,9 +272,28 @@ func drone_attempt_drop(id : int) -> bool:
 		return false
 	
 	drones[id].holding.state = Hydrophone.State.DEPLOYED
+	drones[id].holding.pos = base_pos
 	drones[id].holding = null
 	
 	return true
+
+func drone_investigate(id : int) -> int:
+	var closest_poi : PointOfInterest = null
+	var closest_distance : float = INF
+	
+	for poi in points_of_interest:
+		var dist = drones[id].pos.distance_squared_to(poi.pos)
+		if dist > PointOfInterest.detect_range_squared:
+			continue
+		if dist < closest_distance:
+			closest_distance = dist
+			closest_poi = poi
+	
+	if closest_poi != null:
+		closest_poi.investigated = true
+		return closest_poi.id
+	
+	return -1
 
 func emit_attention(pos : Vector2, strength : float):
 	for m in monsters:
