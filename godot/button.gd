@@ -6,6 +6,7 @@ signal pressed
 @onready var timer: Timer = $Timer
 @onready var button: Node3D = $Button
 @onready var cylinder: Node3D = $Cylinder
+@onready var sound: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 var ray: RayCast3D
 
@@ -14,6 +15,7 @@ func _unhandled_input(event):
 		if ray != null:
 			if ray.is_colliding() and ray.get_collider() == area:
 				pressed.emit()
+				sound.play()
 				button.position = button.position + (Vector3.DOWN * 0.025)
 				timer.start()
 

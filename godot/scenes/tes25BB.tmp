@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5mhxx4uk7xa"]
+
+[ext_resource type="Script" path="res://scenes/testing.gd" id="1_tbm7i"]
+[ext_resource type="PackedScene" uid="uid://ccoj8cm8b8cp5" path="res://scenes/message_terminal.tscn" id="2_ylbch"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x8y6j"]
+
+[node name="Control" type="Control"]
+material = SubResource("ShaderMaterial_x8y6j")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tbm7i")
+
+[node name="MessageTerminal" parent="." instance=ExtResource("2_ylbch")]
+layout_mode = 1
+character_delay = 0.08
+pause_after_timestamp = 0.2
+pause_after_sender = 0.2
+auto_close_delay = 2.0
+max_history_lines = 1000

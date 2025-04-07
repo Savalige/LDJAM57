@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scenes/gui/terminal.gd" id="1_xpkg7"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_gv8xn"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_j0poq"]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ky8wl"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_gv8xn")
+albedo_texture = SubResource("ViewportTexture_j0poq")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vnq7f"]
 size = Vector2(1, 1)

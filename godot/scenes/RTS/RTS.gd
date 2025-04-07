@@ -19,6 +19,8 @@ func _ready():
 		var monster = scn_monster.instantiate()
 		self.add_child(monster)
 		monster.id = i
+	
+	ScrGlobalRts.base_box = ScrGlobalRts.BaseBox.HYDROPHONE
 
 func _physics_process(delta):
 	ScrGlobalRts.physics_step(delta)

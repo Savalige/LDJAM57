@@ -8,6 +8,7 @@ extends Node3D
 
 var ray: RayCast3D
 var player: Player
+@export var hydrophones: Node
 
 var mesh_size = Vector2()
 
@@ -23,6 +24,9 @@ func _ready():
 	var temp = gui.instantiate()
 	if temp is DroneGui:
 		temp.drone = drone
+	if temp is HydrophoneGui:
+		print(hydrophones)
+		temp.hydrophones = hydrophones
 	$Viewport.add_child(temp)
 	area.mouse_entered.connect(func(): mouse_entered = true)
 	viewport.set_process_input(true)

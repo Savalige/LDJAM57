@@ -1,0 +1,49 @@
+[gd_resource type="ShaderMaterial" load_steps=11 format=3 uid="uid://utfb4ivadky8"]
+
+[ext_resource type="Shader" path="res://assets/shaders/copper.gdshader" id="1_2t0ma"]
+[ext_resource type="Shader" path="res://assets/shaders/oxidation.gdshader" id="1_b7u5t"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_535pg"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7whlt"]
+noise = SubResource("FastNoiseLite_535pg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ujtck"]
+render_priority = 1
+shader = ExtResource("1_b7u5t")
+shader_parameter/noise_shading = 1.0
+shader_parameter/intensity = 0.264
+shader_parameter/color = Color(0.170677, 0.624122, 0.44444, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_7whlt")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6oa1s"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_awqff"]
+noise = SubResource("FastNoiseLite_6oa1s")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7urou"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_ujtck")
+shader = ExtResource("1_b7u5t")
+shader_parameter/noise_shading = 0.742
+shader_parameter/intensity = 0.41
+shader_parameter/color = Color(0.56715, 0.327233, 0.183663, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_awqff")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ch20l"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2thcx"]
+width = 2048
+height = 2048
+in_3d_space = true
+noise = SubResource("FastNoiseLite_ch20l")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_7urou")
+shader = ExtResource("1_2t0ma")
+shader_parameter/noise_shading = 1.0
+shader_parameter/intensity = 0.0
+shader_parameter/color = Color(0.8212, 0.316609, 0.149842, 1)
+shader_parameter/color_2 = Color(0.8212, 0.316609, 0.149842, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_2thcx")

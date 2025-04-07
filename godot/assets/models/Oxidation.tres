@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://brgv8jtx0712t"]
+
+[ext_resource type="Shader" path="res://assets/shaders/oxidation.gdshader" id="1_p4spf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ch20l"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2thcx"]
+width = 2048
+height = 2048
+in_3d_space = true
+noise = SubResource("FastNoiseLite_ch20l")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_p4spf")
+shader_parameter/noise_shading = 1.0
+shader_parameter/intensity = 0.5
+shader_parameter/color = Color(0.279228, 0.60592, 0.49739, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_2thcx")
