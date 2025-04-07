@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwma7hmhthf30"]
+[gd_scene load_steps=8 format=3 uid="uid://cwma7hmhthf30"]
 
 [ext_resource type="Script" path="res://scenes/gui/drone_gui.gd" id="1_23hna"]
 [ext_resource type="Theme" uid="uid://d22mpqutkotsu" path="res://ui/theme.tres" id="2_7fx17"]
 [ext_resource type="AudioStream" uid="uid://cgk336blj4bi2" path="res://assets/audio/sfx/sfx computer error v2.wav" id="3_2topi"]
 [ext_resource type="FontFile" uid="uid://ckgvkkjrnnnqi" path="res://fonts/Glass_TTY_VT220.ttf" id="3_xk565"]
 [ext_resource type="AudioStream" uid="uid://b6x77emkprjwx" path="res://assets/audio/sfx/sfx_mouse_click.mp3" id="4_0cyvh"]
+[ext_resource type="Texture2D" uid="uid://do5uj1tr1saj7" path="res://assets/Textures/InterestPoints/interestpoint_underwater_dead_diver.png" id="6_ebvoc"]
+[ext_resource type="Texture2D" uid="uid://b72ahat3ki7p6" path="res://assets/Textures/InterestPoints/interestpoint_underwater_nothing.png" id="7_uk2hv"]
 
 [node name="DroneGui" type="Control"]
 layout_mode = 3
@@ -101,6 +103,18 @@ stream = ExtResource("4_0cyvh")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(388, 272)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_ebvoc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(388, 272)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_uk2hv")
 
 [connection signal="button_up" from="PickUp" to="." method="_on_pick_up_button_up"]
 [connection signal="button_up" from="Drop" to="." method="_on_drop_button_up"]

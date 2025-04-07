@@ -15,6 +15,13 @@ func _draw():
 	for y in range(0, 10):
 		draw_line(Vector2(0,y*50+25), Vector2(500, y*50+25), Color.WHITE)
 	
+	for drone in ScrGlobalRts.drones:
+		for poi in ScrGlobalRts.points_of_interest:
+			if drone.pos.distance_to(poi.pos) < 90:
+				draw_arc(poi.pos - Vector2(25,25), 
+				45, 
+				0, PI*2, 100, Color.PURPLE)
+	
 	if not timer.is_stopped():
 		ScrGlobalRts.emit_attention(Vector2(500, 500), 200)
 		var radius = ((timer.wait_time - timer.time_left) / timer.wait_time) * 500

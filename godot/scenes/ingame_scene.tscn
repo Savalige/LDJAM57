@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=24 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bhg45iwrlmt61" path="res://assets/models/dome.tscn" id="2_cv5ji"]
@@ -32,6 +32,8 @@ fog_enabled = true
 fog_light_color = Color(0.954949, 0.807419, 0.631515, 1)
 fog_light_energy = 0.02
 fog_density = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w2k7c"]
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
@@ -237,6 +239,12 @@ transform = Transform3D(0.0707932, 0, 0.0372603, 0, 0.08, 0, -0.0372603, 0, 0.07
 
 [node name="messageterminalV2" parent="." instance=ExtResource("21_1yaq8")]
 transform = Transform3D(-0.263351, 0, 0.9647, 0, 1, 0, -0.9647, 0, -0.263351, -2.89772, 1.00373, 1.03504)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.931364, 3.94038)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_w2k7c")
 
 [connection signal="timeout" from="CreakTimer" to="." method="_on_creak_timer_timeout"]
 [connection signal="timeout" from="BonkTimer" to="." method="_on_bonk_timer_timeout"]
