@@ -13,6 +13,7 @@ extends Node2D
 @onready var delivery_hydrophone = $DeliveryArea/hydrophone
 @onready var button = $button
 @onready var box: Node3D = $dome/Box
+@onready var cabinet = $cabinetv2
 
 var rng = RandomNumberGenerator.new()
 
@@ -28,6 +29,8 @@ func _ready() -> void:
 		item.player = player
 	
 	button.ray = player.ray
+	cabinet.ray = player.ray
+	cabinet.player = player
 	
 	if SaveGame.has_save():
 		SaveGame.load_game(get_tree())

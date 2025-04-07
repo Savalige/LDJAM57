@@ -1,14 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccueyg4c7dv4r"]
+[gd_scene load_steps=8 format=3 uid="uid://ccueyg4c7dv4r"]
 
 [ext_resource type="PackedScene" uid="uid://brqrh8lccigxa" path="res://assets/models/cabinetv2.glb" id="1_iq4vn"]
+[ext_resource type="Script" path="res://assets/modelscenes/cabinetv2.gd" id="2_6f0d8"]
 [ext_resource type="PackedScene" uid="uid://ctkjj7j1w7lhe" path="res://assets/modelscenes/cabinetdoor.tscn" id="2_ntcif"]
 [ext_resource type="Script" path="res://assets/modelscenes/cabinetdoor.gd" id="3_e6aol"]
 [ext_resource type="Script" path="res://assets/modelscenes/Area3D.gd" id="4_uthdw"]
+[ext_resource type="PackedScene" uid="uid://c4l283c886ddf" path="res://assets/models/hydrophone.tscn" id="6_fge8e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t15eq"]
-size = Vector3(0.368469, 0.720703, 0.708984)
+size = Vector3(0.6, 0.720703, 0.708984)
 
 [node name="cabinetv2" instance=ExtResource("1_iq4vn")]
+script = ExtResource("2_6f0d8")
 
 [node name="Cube" parent="." index="0"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -22,5 +25,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.341151, 0.434166, 0.198131)
 script = ExtResource("4_uthdw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.096762, 0, -0.196154)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0190035, 0, -0.196154)
 shape = SubResource("BoxShape3D_t15eq")
+
+[node name="Items" type="Node3D" parent="." index="3"]
+
+[node name="hydrophone2" parent="Items" index="0" instance=ExtResource("6_fge8e")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.152862, 0.218306, 0)
+visible = false
+
+[node name="hydrophone3" parent="Items" index="1" instance=ExtResource("6_fge8e")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.152862, 0.480352, 0)
+visible = false
+
+[node name="hydrophone4" parent="Items" index="2" instance=ExtResource("6_fge8e")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.154404, 0.668068, -0.00237165)
+visible = false
+
+[node name="hydrophone" parent="Items" index="3" instance=ExtResource("6_fge8e")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.152862, 0.05471, 0)
+visible = false
