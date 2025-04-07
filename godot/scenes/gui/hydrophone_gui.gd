@@ -1,7 +1,10 @@
 extends Control
+class_name HydrophoneGui
 
 @export var item: PackedScene
 @onready var items: Node = $Items
+
+var hydrophones: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +21,7 @@ func _ready():
 				temp.label_deployment = "Carried"
 			_:
 				print("ERROR: FUCK SHITE FUCK")
-		
+		temp.id = i
 		items.add_child(temp)
 		print("here")
 
@@ -36,3 +39,10 @@ func _process(_delta):
 				list[i].label_deployment = "Carried"
 			_:
 				print("ERROR: FUCK SHITE FUCK")
+		if hydrophones != null:
+			var child = hydrophones.get_children()[i]
+			if child != null:
+				if list[i].active:
+					child.current = true
+				else:
+					child.current = false

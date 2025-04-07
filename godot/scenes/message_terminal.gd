@@ -112,6 +112,7 @@ func _on_char_reveal_timeout():
 			_audio_player.play()
 	else:
 		# Done typing this message
+		$AudioStreamPlayer3D.stop()
 		_is_typing = false
 		_char_reveal_timer.stop()
 
