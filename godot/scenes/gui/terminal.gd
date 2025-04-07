@@ -6,6 +6,8 @@ extends Node3D
 @export var gui: PackedScene
 @export var drone: int
 
+signal done
+
 var ray: RayCast3D
 var player: Player
 @export var hydrophones: Node
@@ -24,12 +26,16 @@ func _ready():
 	var temp = gui.instantiate()
 	if temp is DroneGui:
 		temp.drone = drone
+		temp.done.connect(is_done)
 	if temp is HydrophoneGui:
 		print(hydrophones)
 		temp.hydrophones = hydrophones
 	$Viewport.add_child(temp)
 	area.mouse_entered.connect(func(): mouse_entered = true)
 	viewport.set_process_input(true)
+
+func is_done():
+	done.emit()
 
 func _unhandled_input(event):
 	if ray != null:

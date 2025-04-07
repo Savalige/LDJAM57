@@ -1,6 +1,9 @@
 extends CharacterBody3D
 class_name Player
 
+signal win
+signal lost
+
 const SPEED = 100.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.004
@@ -31,8 +34,18 @@ var rng = RandomNumberGenerator.new()
 var step_id = -1
 
 func _ready():
+	win.connect(win_state)
+	lost.connect(lose_state)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	psx.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+func lose_state():
+	$Camera3D/UI/Lose.visible = true
+	$Timer.start()
+
+func win_state():
+	$Camera3D/UI/Win.visible = true
+	$Timer.start()
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -63,3 +76,7 @@ func _physics_process(delta):
 				foot_audio.pitch_scale = rng.randf_range(0.8, 1.2)
 				step_id = temp
 				foot_audio.play()
+
+
+func _on_timer_timeout():
+	get_tree().quit()

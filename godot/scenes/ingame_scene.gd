@@ -19,6 +19,8 @@ extends Node2D
 
 var rng = RandomNumberGenerator.new()
 
+var done = false
+
 func _ready() -> void:
 	fade_overlay.visible = true
 	
@@ -38,6 +40,7 @@ func _ready() -> void:
 	for terminal in terminals.get_children():
 		terminal.ray = player.ray
 		terminal.player = player
+		terminal.done.connect(is_done)
 	
 	for item in items.get_children():
 		item.ray = player.ray
@@ -55,6 +58,9 @@ func _ready() -> void:
 	ScrGlobalRts.base_box_drop.connect(item_got)
 	ScrGlobalRts.base_box_pickup.connect(item_taken)
 
+func is_done():
+	done = true
+
 func _input(event) -> void:
 	if event.is_action_pressed("pause") and not pause_overlay.visible:
 		get_viewport().set_input_as_handled()
@@ -62,9 +68,12 @@ func _input(event) -> void:
 		get_tree().paused = true
 		pause_overlay.grab_button_focus()
 		pause_overlay.visible = true
-	if event.is_action_released("interact") and box.visible == false:
+	if event.is_action_released("interact"):
 		if player.ray != null:
-			if player.ray.is_colliding() and player.ray.get_collider() == delivery_area:
+			if player.ray.is_colliding() and player.ray.get_collider() == $Area3D:
+				if done:
+					player.win.emit()
+			if player.ray.is_colliding() and player.ray.get_collider() == delivery_area and box.visible == false:
 				if delivery_hydrophone.visible == false and player.hydrophone.visible == true:
 					player.hydrophone.visible = false
 					delivery_hydrophone.visible = true
@@ -79,6 +88,8 @@ func _save_game() -> void:
 func _physics_process(delta):
 	ScrGlobalRts.physics_step(delta)
 	for i in len(ScrGlobalRts.monsters):
+		if ScrGlobalRts.monsters[i].pos.distance_to(Vector2(500, 500)) < 10:
+			player.lost.emit()
 		monsters.get_children()[i].position = Vector3(ScrGlobalRts.monsters[i].pos.x, 0, ScrGlobalRts.monsters[i].pos.y) - Vector3(500, 0, 500)
 	for i in len(ScrGlobalRts.hydrophones):
 		hydrophones.get_children()[i].position = Vector3(ScrGlobalRts.hydrophones[i].pos.x, 0, ScrGlobalRts.hydrophones[i].pos.y) - Vector3(500, 0, 500)

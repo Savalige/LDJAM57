@@ -10,6 +10,8 @@ var player: Player
 @onready var click_audio: AudioStreamPlayer = $ClickAudio
 @export var drone: int
 
+signal done
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	drone_label.text = "Drone: " + str(drone)
@@ -97,3 +99,11 @@ func _on_line_edit_text_submitted(_new_text):
 
 func _on_photo_button_up():
 	click_audio.play()
+	var id = ScrGlobalRts.drone_investigate(drone)
+	if id > -1:
+		$Sprite2D.visible = true
+		$Sprite2D2.visible = false
+		done.emit()
+	else:
+		$Sprite2D.visible = false
+		$Sprite2D2.visible = true
