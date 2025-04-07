@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvnuvm37jocq0"]
+
+[ext_resource type="PackedScene" uid="uid://dq4j23wenbmbk" path="res://assets/models/ceilinglamp.glb" id="1_hhv0g"]
+
+[node name="ceilinglamp" instance=ExtResource("1_hhv0g")]
+
+[node name="Cone" parent="." index="0"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.95959, 0)

@@ -1,8 +1,14 @@
+<<<<<<< HEAD
+[gd_scene load_steps=2 format=3 uid="uid://cvih2u8dglq46"]
+
+[ext_resource type="Script" path="res://scenes/gui/radar_gui.gd" id="1_mtj5x"]
+=======
 [gd_scene load_steps=4 format=3 uid="uid://cvih2u8dglq46"]
 
 [ext_resource type="Script" path="res://scenes/gui/radar_gui.gd" id="1_mtj5x"]
 [ext_resource type="FontFile" uid="uid://dwqqpio6ubqww" path="res://fonts/fnt_i_pixel_u.ttf" id="2_6vyr4"]
 [ext_resource type="AudioStream" uid="uid://4argqlthrprn" path="res://assets/audio/sfx/Footsteps/Concrete/sfx_footstep_concrete_softer_1.wav" id="3_lke4g"]
+>>>>>>> 449fbb2e42bf3ea4e9dac31f88b7d14f09d57c08
 
 [node name="RadarGui" type="Control"]
 layout_mode = 3
@@ -18,7 +24,7 @@ layout_mode = 0
 offset_right = 500.0
 offset_bottom = 500.0
 
-[node name="Ping" type="Button" parent="."]
+[node name="Drop" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -28,16 +34,9 @@ offset_top = -78.0
 offset_right = 137.0
 offset_bottom = -40.0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_6vyr4")
-theme_override_font_sizes/font_size = 24
 text = "Ping
 "
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
 
 [node name="PingAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_lke4g")
-
-[connection signal="button_up" from="Ping" to="." method="_on_ping_button_up"]

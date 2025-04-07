@@ -6,9 +6,10 @@
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -76.5
-offset_right = 76.5
-offset_bottom = 24.0
+offset_left = -124.0
+offset_top = 37.0
+offset_right = 125.0
+offset_bottom = 82.0
 grow_horizontal = 2
 script = ExtResource("1_7ygir")
 

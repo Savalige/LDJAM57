@@ -20,6 +20,12 @@ theme_type_variation = &"HeaderLarge"
 text = "game_paused"
 horizontal_alignment = 1
 
+[node name="Label2" type="Label" parent="VBoxContainer3"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = " "
+horizontal_alignment = 1
+
 [node name="SettingsContainer" type="VBoxContainer" parent="VBoxContainer3"]
 unique_name_in_owner = true
 visible = false

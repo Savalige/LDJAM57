@@ -1,13 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://diquwv3uklemf"]
+[gd_scene load_steps=10 format=3 uid="uid://diquwv3uklemf"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_b6afx"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="2_mnk7t"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_1wu6q"]
 [ext_resource type="PackedScene" uid="uid://ch3pt48se8yy7" path="res://assets/models/hydrophone.glb" id="4_1lva4"]
+[ext_resource type="Shader" path="res://scenes/PSX.gdshader" id="4_ch8wg"]
+[ext_resource type="Shader" path="res://scenes/player/Vertex.gdshader" id="5_yvijf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oujut"]
+shader = ExtResource("5_yvijf")
+shader_parameter/affine_mapping = false
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2(960, 540)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1davg"]
+shader = ExtResource("4_ch8wg")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_knhip"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_b6afx")
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -25,6 +40,23 @@ debug_shape_thickness = 1
 [node name="FadeOverlay" parent="Camera3D/UI" instance=ExtResource("2_mnk7t")]
 unique_name_in_owner = true
 visible = false
+
+[node name="Vertex" type="ColorRect" parent="Camera3D/UI"]
+visible = false
+material = SubResource("ShaderMaterial_oujut")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PSX" type="ColorRect" parent="Camera3D/UI"]
+material = SubResource("ShaderMaterial_1davg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PauseOverlay" parent="Camera3D/UI" instance=ExtResource("3_1wu6q")]
 unique_name_in_owner = true
